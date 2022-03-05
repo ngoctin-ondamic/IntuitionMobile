@@ -3,17 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/custom_banner.xml" value="0.2203125" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/custom_button.xml" value="0.2203125" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/custom_fragment_button.xml" value="0.2203125" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/custom_input.xml" value="0.2203125" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/custom_link.xml" value="0.17447916666666666" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/custom_searchbox.xml" value="0.2203125" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/custom_square_button.xml" value="0.2203125" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/ic_email.xml" value="0.2203125" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/ic_forward.xml" value="0.17447916666666666" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/ic_lock.xml" value="0.2203125" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/ic_outline_person_24.xml" value="0.2203125" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/ic_person.xml" value="0.2203125" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/drawable/ic_search.xml" value="0.2203125" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/activity_demo.xml" value="0.5" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/activity_login_failed.xml" value="0.14447463768115942" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/activity_menu.xml" value="0.1793478260869565" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/activity_user_home_screen.xml" value="0.33" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/activity_update_profile.xml" value="0.1793478260869565" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/activity_user_home_screen.xml" value="0.18" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/fragment_all.xml" value="0.1838768115942029" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/fragment_all_products.xml" value="0.1838768115942029" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/fragment_jean.xml" value="0.1838768115942029" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/fragment_jeans.xml" value="0.1838768115942029" />
+        <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/fragment_shirt.xml" value="0.1" />
       </map>
     </option>
   </component>

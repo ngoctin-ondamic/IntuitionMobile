@@ -1,22 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.UserHomeScreenActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="300dp"
-        android:layout_height="118dp"
-        android:text="Home"
-        android:textSize="80dp"
-        android:textAlignment="center"
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_searchbox"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Find your product"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <android.widget.Button
+        android:id="@+id/btnForwardMenu"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_square_button"
+        android:padding="15dp"
+        android:text=" "
+        android:drawableStart="@drawable/ic_person_outlined"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="330dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.482"/>
+        app:layout_constraintVertical_bias="0.169"
+        android:background="@drawable/custom_banner"
+        android:scaleType="fitXY"
+        android:src="@drawable/banner" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34">
+
+        <android.widget.Button
+            android:id="@+id/forwardAllFragment"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_fragment_button"
+            android:ems="10"
+            android:padding="10dp"
+            android:text="All"
+            android:textFontWeight="200"
+            android:textSize="12sp" />
+
+        <android.widget.Button
+            android:id="@+id/forwardTshirtFragment"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_fragment_button"
+            android:ems="10"
+            android:padding="10dp"
+            android:text="T-Shirt"
+            android:textFontWeight="200"
+            android:textSize="12sp" />
+
+        <android.widget.Button
+            android:id="@+id/forwardJeansFragment"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_fragment_button"
+            android:ems="10"
+            android:padding="10dp"
+            android:text="Jeans"
+            android:textFontWeight="200"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="360dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.881">
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>

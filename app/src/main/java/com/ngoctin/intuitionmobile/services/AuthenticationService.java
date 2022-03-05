@@ -2,9 +2,12 @@ package com.ngoctin.intuitionmobile.services;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.ngoctin.intuitionmobile.R;
 import com.ngoctin.intuitionmobile.activities.LoginActivity;
 import com.ngoctin.intuitionmobile.activities.LoginFailedActivity;
@@ -25,7 +28,6 @@ public class AuthenticationService {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         String jwt = "Bearer " + response.body();
-                        System.out.println( "JWT : " + jwt);
                         AuthenticationAPI.authenticationAPI.getAuthenticatedUser(jwt)
                                 .enqueue(new Callback<AuthenticatedUser>() {
                                     @Override
@@ -35,7 +37,19 @@ public class AuthenticationService {
                                                     && response.code() == 200
                                                     && response.body().getRole().equalsIgnoreCase("user")){
                                                 Intent intent = new Intent(context, UserHomeScreenActivity.class);
+                                                intent.putExtra("jwt",jwt);
                                                 intent.putExtra("fullname",response.body().getFullname());
+                                                AuthenticatedUser authenticatedUser = response.body();
+                                                authenticatedUser.setJwt(jwt);
+//                                                Bundle bundle = new Bundle();
+//                                                bundle.putSerializable("user_information",authenticatedUser);
+//                                                intent.putExtras(bundle);
+                                                SharedPreferences sp = context.getSharedPreferences("user_store",Context.MODE_PRIVATE);
+                                                SharedPreferences.Editor editor = sp.edit();
+                                                Gson gson = new Gson();
+                                                String userInformation = gson.toJson(authenticatedUser);
+                                                editor.putString("authenticated_user",userInformation);
+                                                editor.commit();
                                                 context.startActivity(intent);
                                             }else{
                                                 Toast.makeText(context, "Account [" + username + "] does not exist !", Toast.LENGTH_SHORT).show();

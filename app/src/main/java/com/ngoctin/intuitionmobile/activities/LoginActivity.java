@@ -3,6 +3,7 @@ package com.ngoctin.intuitionmobile.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         EditText editTextPassword = findViewById(R.id.etPassword);
         Button btnLogin = findViewById(R.id.btnLogin);
         Button btnForwardSignup = this.findViewById(R.id.btnForwardSignUp);
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,8 +59,11 @@ public class LoginActivity extends AppCompatActivity {
         btnForwardSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
-                startActivity(intent);
+                String username = editTextUsername.getText().toString();
+                String password = editTextUsername.getText().toString();
+                System.out.println("username" + username);
+                System.out.println("password" + password);
+                AuthenticationService.login(username,password,LoginActivity.this);
             }
         });
 

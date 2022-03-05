@@ -1,6 +1,8 @@
 package com.ngoctin.intuitionmobile.models;
 
-public class AuthenticatedUser {
+import java.io.Serializable;
+
+public class AuthenticatedUser implements Serializable {
 
     private String username;
     private String fullname;
@@ -9,10 +11,12 @@ public class AuthenticatedUser {
     private String rank;
     private String email;
     private String role;
+    private String jwt;
 
     public AuthenticatedUser(String username, String fullname,
                              String phoneNumber, String avatar,
-                             String rank, String email, String role) {
+                             String rank, String email,
+                             String role, String jwt) {
         this.username = username;
         this.fullname = fullname;
         this.phoneNumber = phoneNumber;
@@ -20,9 +24,18 @@ public class AuthenticatedUser {
         this.rank = rank;
         this.email = email;
         this.role = role;
+        this.jwt = jwt;
     }
 
     public AuthenticatedUser() {
+    }
+
+    public String getJwt() {
+        return jwt;
+    }
+
+    public void setJwt(String jwt) {
+        this.jwt = jwt;
     }
 
     public String getUsername() {
@@ -91,6 +104,7 @@ public class AuthenticatedUser {
                 ", rank='" + rank + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
+                ", jwt='" + jwt + '\'' +
                 '}';
     }
 }
