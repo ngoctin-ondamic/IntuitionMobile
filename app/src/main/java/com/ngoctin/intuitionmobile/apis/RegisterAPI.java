@@ -17,7 +17,7 @@ public interface RegisterAPI {
             .create();
 
     RegisterAPI registerApi= new Retrofit.Builder()
-            .baseUrl("http://192.168.130.2:8080/api/")
+            .baseUrl("http://192.168.56.1:8080/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(RegisterAPI.class);

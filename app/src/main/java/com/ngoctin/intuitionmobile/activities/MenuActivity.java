@@ -17,6 +17,8 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         Button signoutButton = this.findViewById(R.id.btnLogout);
         Button updateProfileButton = this.findViewById(R.id.btnForwardUpdateProfile);
+        Button updateAddressButton = this.findViewById(R.id.btnForwardUpdateAddress);
+
         signoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,10 +26,19 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         updateProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this,UpdateProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        updateAddressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, UpdateAddressActivity.class );
                 startActivity(intent);
             }
         });
