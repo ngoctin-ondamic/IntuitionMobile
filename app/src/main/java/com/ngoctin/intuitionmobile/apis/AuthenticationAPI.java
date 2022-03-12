@@ -15,12 +15,14 @@ import retrofit2.http.POST;
 
 public interface AuthenticationAPI{
 
+    String localhost = "192.168.1.14";
+
     Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
             .create();
 
     AuthenticationAPI authenticationAPI = new Retrofit.Builder()
-            .baseUrl("http://192.168.130.2:8080/api/")
+            .baseUrl("http://" + localhost + ":8080/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(AuthenticationAPI.class);
 
