@@ -27,6 +27,7 @@ public class UserHomeScreenActivity extends AppCompatActivity {
         Button allFragmentButton = this.findViewById(R.id.forwardAllFragment);
         Button TShirtFragmentButton = this.findViewById(R.id.forwardTshirtFragment);
         Button JeanFragmentButton = this.findViewById(R.id.forwardJeansFragment);
+        replaceFragment(new AllFragment());
         allFragmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

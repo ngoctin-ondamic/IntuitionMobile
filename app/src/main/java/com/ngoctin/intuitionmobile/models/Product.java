@@ -19,6 +19,13 @@ public class Product {
         this.url = url;
     }
 
+    public Product(String name, String price, String description, String url) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.url = url;
+    }
+
     public int getId() {
         return id;
     }
