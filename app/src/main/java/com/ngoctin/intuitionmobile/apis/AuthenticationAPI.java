@@ -24,7 +24,8 @@ public interface AuthenticationAPI{
     AuthenticationAPI authenticationAPI = new Retrofit.Builder()
             .baseUrl("http://" + localhost + ":8080/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .build().create(AuthenticationAPI.class);
+            .build()
+            .create(AuthenticationAPI.class);
 
 
     @FormUrlEncoded

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class AuthenticatedUser implements Serializable {
 
+    private int id;
     private String username;
     private String fullname;
     private String phoneNumber;
@@ -12,6 +13,23 @@ public class AuthenticatedUser implements Serializable {
     private String email;
     private String role;
     private String jwt;
+
+
+    public AuthenticatedUser(int id, String username,
+                             String fullname, String phoneNumber,
+                             String avatar, String rank,
+                             String email, String role,
+                             String jwt) {
+        this.id = id;
+        this.username = username;
+        this.fullname = fullname;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.rank = rank;
+        this.email = email;
+        this.role = role;
+        this.jwt = jwt;
+    }
 
     public AuthenticatedUser(String username, String fullname,
                              String phoneNumber, String avatar,
@@ -28,6 +46,10 @@ public class AuthenticatedUser implements Serializable {
     }
 
     public AuthenticatedUser() {
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getJwt() {
