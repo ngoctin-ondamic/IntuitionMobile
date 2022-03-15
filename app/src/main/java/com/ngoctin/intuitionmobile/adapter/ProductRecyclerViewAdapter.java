@@ -79,7 +79,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter {
                 .into(productImage);
 
         ((TextView)holder.itemView.findViewById(R.id.productName)).setText( "Name : " +  product.getName());
-        ((TextView)holder.itemView.findViewById(R.id.productPrice)).setText("Price : " + product.getPrice());
+        ((TextView)holder.itemView.findViewById(R.id.productPrice)).setText(product.getPrice()+"");
 
         Button btnDetail = holder.itemView.findViewById(R.id.btnDetail);
         btnDetail.setOnClickListener(new View.OnClickListener() {

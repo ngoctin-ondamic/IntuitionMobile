@@ -35,7 +35,10 @@ public class UserService {
                 .enqueue(new Callback<InforToUpdate>() {
                     @Override
                     public void onResponse(Call<InforToUpdate> call, Response<InforToUpdate> response) {
-                        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                        System.out.println("update : " + message);
+                        if(response.code() == 200){
+                            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override
@@ -48,14 +51,44 @@ public class UserService {
     public static int validate(InforToUpdate inforUser){
 
         if(!inforUser.getFullname().matches("[a-zA-Z\\s]*")
-                || inforUser.getFullname().length() == 0
-        ){
+                || inforUser.getFullname().length() == 0){
             return 1;
         }
 
         if(!inforUser.getPhoneNumber().matches("^\\d{10,12}$")){
             return 2;
         }
+
+        String emailRegex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if(!inforUser.getEmail().matches(emailRegex)){
+            return 3;
+        }
         return 0;
     }
+
+//    public static int validate(RegisterUserRequest registerUserRequest, String confirmPassword){
+//        if(!registerUserRequest.getUsername()
+//                .matches("^[a-zA-Z]*([._](?![._])|[a-zA-Z0-9]){3,12}[a-zA-Z0-9]$")){
+//            // ngoctin.1908
+//            return 1;
+//        }
+//        if(!registerUserRequest.getPassword().
+//                matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$")){
+//            // 123456Tin@
+//            return 2;
+//        }
+//        if(!registerUserRequest.getPassword().equals(confirmPassword)){
+//            return 3;
+//        }
+//        if(!registerUserRequest.getFullname().matches("[a-zA-Z\\s]*")
+//                || registerUserRequest.getFullname().length() == 0
+//        ){
+//            return 4;
+//        }
+//        if(!registerUserRequest.getPhoneNumber().matches("^\\d{10,12}$")){
+//            return 5;
+//        }
+//        return 0;
+//    }
 }

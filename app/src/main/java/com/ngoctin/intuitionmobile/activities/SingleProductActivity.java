@@ -20,7 +20,9 @@ import com.ngoctin.intuitionmobile.apis.ProductAPI;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
 import com.ngoctin.intuitionmobile.models.CartItem;
 import com.ngoctin.intuitionmobile.models.Product;
+import com.ngoctin.intuitionmobile.services.CartService;
 import com.ngoctin.intuitionmobile.services.ProductService;
+import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,33 +44,44 @@ public class SingleProductActivity extends AppCompatActivity {
         TextView  productPrice = findViewById(R.id.singleProductPrice);
         TextView  productQuantity = findViewById(R.id.singleProductAvailable);
         TextView productDesc = findViewById(R.id.singleProductDescription);
+        TextView productUrl = findViewById(R.id.tvProductImage);
         CartItemRecyclerViewAdapter cartItemRecyclerViewAdapter = new CartItemRecyclerViewAdapter(SingleProductActivity.this);
+        int productID = this.getIntent().getIntExtra("selected_product_id",0);
         ProductService.getProductByID(
                 SingleProductActivity.this,
                 productImage,productName,productPrice,
-                productQuantity,productDesc);
+                productQuantity,productDesc, productUrl);
         Button addToCartButton = findViewById(R.id.btnAddToCart);
+        cart = CartService.getCart(this);
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 cart = cartItemRecyclerViewAdapter.getCart();
                 Product product = new Product(
                         productName.getText().toString(),
                         productPrice.getText().toString(),
                         productDesc.getText().toString(),
-                        null
+                        productUrl.getText().toString()
                 );
-                CartItem cartItem = new CartItem(1,product,1);
-                 if(cart == null){
-                     cart = new ArrayList<>();
-                     cart.add(cartItem);
-                     cartItemRecyclerViewAdapter.setCart(cart);
-                 }else{
-                     cart.add(cartItem);
-                     cartItemRecyclerViewAdapter.setCart(cart);
-                 }
-                cartItemRecyclerViewAdapter.notifyItemInserted(cart.size());
-                cartItemRecyclerViewAdapter.notifyDataSetChanged();
+                CartItem cartItem = CartService.findCartItemBYID(cart,productID);
+                if(cartItem == null){
+                    System.out.println("SingleProductActivity : null");
+                    cartItem = new CartItem(productID,product,1);
+                    cart.add(cartItem);
+                }else{
+                    System.out.println("SingleProductActivity : not null");
+                    for (CartItem item: cart) {
+                        if(item.getCartItemID() == productID){
+                            System.out.println("itemQuantity" + item.getQuantity());
+                            item.setQuantity(item.getQuantity() + 1);
+                            System.out.println("itemQuantity" + item.getQuantity());
+                        }
+                    }
+                }
+                if(CartService.updateCart(SingleProductActivity.this,cart)){
+                    Toast.makeText(SingleProductActivity.this, "Add To Cart Succesfully !", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(SingleProductActivity.this, "Add To Cart Failed !", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
