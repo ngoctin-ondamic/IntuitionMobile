@@ -17,7 +17,9 @@ import com.bumptech.glide.Glide;
 import com.ngoctin.intuitionmobile.R;
 import com.ngoctin.intuitionmobile.activities.ViewCartActivity;
 import com.ngoctin.intuitionmobile.models.CartItem;
+import com.ngoctin.intuitionmobile.services.CartService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
@@ -84,11 +86,12 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
         ((TextView)holder.itemView.findViewById(R.id.tvCartItemProductID)).setText(cartItem.getProduct().getId()+"");
         ((TextView)holder.itemView.findViewById(R.id.tvCartItemProductName)).setText(cartItem.getProduct().getName());
         TextView tvCartItemQuantity = holder.itemView.findViewById(R.id.tvCartItemQuantity);
-        tvCartItemQuantity.setText("1");
+        tvCartItemQuantity.setText(cartItem.getQuantity()+"");
+        System.out.println("cartItem.getProduct().getPrice() : " +cartItem.getProduct().getPrice());
+        System.out.println("tvCartItemQuantity.getText().toString() : " + tvCartItemQuantity.getText().toString());
         int cartItemPrice = Integer.parseInt(cartItem.getProduct().getPrice()) * (Integer.parseInt(tvCartItemQuantity.getText().toString()));
         TextView tvCartItemPrice = (TextView)holder.itemView.findViewById(R.id.tvCartItemPrice);
         tvCartItemPrice.setText(cartItemPrice + "");
-
         Button cartItemIncreaseBtn  = holder.itemView.findViewById(R.id.btnCartItemIncrease);
         Button cartItemDecreaseBtn  = holder.itemView.findViewById(R.id.btnCartItemDecrease);
 
@@ -104,6 +107,8 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
                 tvCartItemQuantity.setText(currQuantity + "");
                 int cartTotalPrice = Integer.parseInt(totalPrice.getText().toString()) + Integer.parseInt(cartItem.getProduct().getPrice());
                 totalPrice.setText(cartTotalPrice + "");
+                List<CartItem> cartItems = CartService.getCart(getContext());
+                CartService.updateCartItemQuantity(getContext(),cartItems,cartItem.getCartItemID(),1,0);
             }
         });
         cartItemDecreaseBtn.setOnClickListener(new View.OnClickListener() {
@@ -123,8 +128,9 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
                     tvCartItemQuantity.setText(currQuantity + "");
                     int cartTotalPrice = Integer.parseInt(totalPrice.getText().toString()) - Integer.parseInt(cartItem.getProduct().getPrice());
                     totalPrice.setText(cartTotalPrice + "");
+                    List<CartItem> cartItems = CartService.getCart(getContext());
+                    CartService.updateCartItemQuantity(getContext(),cartItems,cartItem.getCartItemID(),1,1);
                 }
-
             }
         });
     }
@@ -138,12 +144,9 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-
         Button btnDetails;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
-
-
     }
 }

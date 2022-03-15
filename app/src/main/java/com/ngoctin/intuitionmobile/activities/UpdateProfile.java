@@ -46,21 +46,12 @@ public class UpdateProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        String fullname = this.getIntent().getStringExtra("fullname").toString();
-        SharedPreferences sharedPreferences = this.getSharedPreferences("user_store",this.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("authenticated_user","");
-        AuthenticatedUser authenticatedUser = gson.fromJson(json, AuthenticatedUser.class);
-        UpdateUser user = gson.fromJson(json, UpdateUser.class);
-//        AuthenticatedUser authenticatedUser = gson.fromJson(json,AuthenticatedUser.class);
-//        Toast.makeText(UpdateProfile.this, "This is Update Profile : " + user, Toast.LENGTH_LONG).show();
-//        Toast.makeText(this, "User ID  : " + authenticatedUser.getId(), Toast.LENGTH_SHORT).show();
-        String jwt = user.getJwt();
+        AuthenticatedUser user = ApplicationUtils.getAuthenticatedUser(this);
+        String jwt = ApplicationUtils.getJwt(this);
         editUsername = (EditText) findViewById(R.id.etUsername);
         editFullname = (EditText) findViewById(R.id.etFullname);
         editPhonenumber = (EditText) findViewById(R.id.etPhoneNumber);
         editEmail = (EditText) findViewById(R.id.etEmail);
-
         editUsername.setText(user.getUsername());
         editUsername.setFocusable(false);
         editFullname.setText(user.getFullname());
@@ -84,20 +75,24 @@ public class UpdateProfile extends AppCompatActivity {
                 InforToUpdate infoUser = new InforToUpdate(fullname, phonenumber, email);
                 int validateInput = UserService.validate(infoUser);
                 String message = "Update Successfully!";
+                System.out.println("validateInput : " + validateInput);
                 switch (validateInput) {
                     case 0:
-//                      ApplicationUtils.clearAllEditTexts(editTextList);
+                        System.out.println("onClick : " + message);
                         UserService.update(jwt, username ,message, infoUser, UpdateProfile.this);
+                        ApplicationUtils.clearAllEditTexts(editTextList);
                         break;
-
                     case 1:
                         message = "Full name can only contain letters ! ";
                         ApplicationUtils.clearEditTextWithToast(editFullname, message, UpdateProfile.this);
                         break;
-
                     case 2:
                         message = "Phone Number must be from 10 - 12 numbers !";
                         ApplicationUtils.clearEditTextWithToast(editPhonenumber, message, UpdateProfile.this);
+                        break;
+                    case 3:
+                        message = "Invalid Email !";
+                        ApplicationUtils.clearEditTextWithToast(editEmail, message, UpdateProfile.this);
                         break;
                 }
             }

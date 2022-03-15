@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -78,7 +79,10 @@ public class ProductService {
         }
     }
 
-    public static void getProductByID(Activity activity, ImageView productImage, TextView productName, TextView productPrice, TextView productQuantity, TextView productDesc){
+    public static void getProductByID(Activity activity, ImageView productImage,
+                                      TextView productName, TextView productPrice,
+                                      TextView productQuantity, TextView productDesc,
+                                      TextView productUrl){
         SharedPreferences sharedPreferences = activity.getSharedPreferences("user_store", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("authenticated_user","");
@@ -89,15 +93,17 @@ public class ProductService {
                 .enqueue(new Callback<Product>() {
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {
+                        Toast.makeText(activity, "productUrl : " + response.body().getUrl(), Toast.LENGTH_SHORT).show();
                         Glide.
                                 with(activity)
                                 .load(response.body().getUrl())
                                 .centerCrop()
                                 .into(productImage);
                         productName.setText("Name : " + response.body().getName());
-                        productPrice.setText("Price : " + response.body().getPrice());
+                        productPrice.setText(response.body().getPrice() + "");
                         productQuantity.setText("Available : " + response.body().getQuantity());
                         productDesc.setText("Description : " + response.body().getDescription());
+                        productUrl.setText(response.body().getUrl());
                     }
                     @Override
                     public void onFailure(Call<Product> call, Throwable t) {
@@ -105,5 +111,7 @@ public class ProductService {
                     }
                 });
     }
+
+
 
 }

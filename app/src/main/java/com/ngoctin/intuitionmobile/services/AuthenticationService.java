@@ -15,7 +15,12 @@ import com.ngoctin.intuitionmobile.activities.UserHomeScreenActivity;
 import com.ngoctin.intuitionmobile.apis.AuthenticationAPI;
 import com.ngoctin.intuitionmobile.models.Address;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
+import com.ngoctin.intuitionmobile.models.CartItem;
+import com.ngoctin.intuitionmobile.models.Product;
 import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,17 +45,22 @@ public class AuthenticationService {
                                                 Intent intent = new Intent(context, UserHomeScreenActivity.class);
                                                 intent.putExtra("jwt",jwt);
                                                 intent.putExtra("fullname",response.body().getFullname());
+
+                                                // After login
+                                                // Create SharedPreference to save data [userInfor, Cart]
+
                                                 AuthenticatedUser authenticatedUser = response.body();
                                                 authenticatedUser.setJwt(jwt);
-//                                                Bundle bundle = new Bundle();
-//                                                bundle.putSerializable("user_information",authenticatedUser);
-//                                                intent.putExtras(bundle);
                                                 SharedPreferences sp = context.getSharedPreferences("user_store",Context.MODE_PRIVATE);
                                                 SharedPreferences.Editor editor = sp.edit();
                                                 Gson gson = new Gson();
                                                 String userInformation = gson.toJson(authenticatedUser);
                                                 editor.putString("authenticated_user",userInformation);
+                                                List<CartItem> cart = new ArrayList<>();
+                                                String cartJson = gson.toJson(cart);
+                                                editor.putString("cart",cartJson);
                                                 editor.commit();
+
                                                 context.startActivity(intent);
                                             }else{
                                                 Toast.makeText(context, "Account [" + username + "] does not exist !", Toast.LENGTH_SHORT).show();
