@@ -12,12 +12,14 @@ import retrofit2.http.POST;
 
 public interface RegisterAPI {
 
+    String localhost = "192.168.1.14";
+
     Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
             .create();
 
     RegisterAPI registerApi= new Retrofit.Builder()
-            .baseUrl("http://192.168.56.1:8080/api/")
+            .baseUrl("http://" + localhost + ":8080/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(RegisterAPI.class);

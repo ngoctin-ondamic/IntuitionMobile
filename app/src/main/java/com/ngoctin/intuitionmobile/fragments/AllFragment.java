@@ -1,14 +1,31 @@
 package com.ngoctin.intuitionmobile.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.ngoctin.intuitionmobile.R;
+import com.ngoctin.intuitionmobile.adapter.ProductRecyclerViewAdapter;
+import com.ngoctin.intuitionmobile.apis.ProductAPI;
+import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
+import com.ngoctin.intuitionmobile.models.Product;
+import com.ngoctin.intuitionmobile.services.ProductService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,13 +65,19 @@ public class AllFragment extends Fragment {
         return fragment;
     }
 
+    List<Product> products = new ArrayList<>();
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     View view;
@@ -64,6 +87,16 @@ public class AllFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_all, container, false);
+        System.out.println("Products : " + products);
+        ProductRecyclerViewAdapter adapter = new ProductRecyclerViewAdapter(container.getContext());
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(container.getContext(),2);
+        RecyclerView productRecyclerView = view.findViewById(R.id.rvAllProducts);
+        productRecyclerView.setLayoutManager(gridLayoutManager);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user_store", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("authenticated_user","");
+        AuthenticatedUser authenticatedUser = gson.fromJson(json,AuthenticatedUser.class);
+        ProductService.getProducts(authenticatedUser.getJwt(),productRecyclerView,adapter,0);
         return view;
     }
 }

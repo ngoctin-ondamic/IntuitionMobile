@@ -12,11 +12,14 @@ import android.widget.Toast;
 
 import com.ngoctin.intuitionmobile.R;
 import com.ngoctin.intuitionmobile.apis.AuthenticationAPI;
+import com.ngoctin.intuitionmobile.apis.ProductAPI;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
+import com.ngoctin.intuitionmobile.models.Product;
 import com.ngoctin.intuitionmobile.services.AuthenticationService;
 import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         EditText editTextPassword = findViewById(R.id.etPassword);
         Button btnLogin = findViewById(R.id.btnLogin);
         Button btnForwardSignup = this.findViewById(R.id.btnForwardSignUp);
+
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,11 +64,8 @@ public class LoginActivity extends AppCompatActivity {
         btnForwardSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = editTextUsername.getText().toString();
-                String password = editTextUsername.getText().toString();
-                System.out.println("username" + username);
-                System.out.println("password" + password);
-                AuthenticationService.login(username,password,LoginActivity.this);
+                Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
+                startActivity(intent);
             }
         });
 
