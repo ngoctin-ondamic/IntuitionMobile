@@ -17,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         Button signoutButton = this.findViewById(R.id.btnLogout);
         Button updateProfileButton = this.findViewById(R.id.btnForwardUpdateProfile);
+        Button forwardCartButton = this.findViewById(R.id.btnForwardCart);
         Button AddressButton = this.findViewById(R.id.btnForwardAddress);
         System.out.println("Menu Activity!");
         signoutButton.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +32,13 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this,UpdateProfile.class);
+                startActivity(intent);
+            }
+        });
+        forwardCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this,ViewCartActivity.class);
                 startActivity(intent);
             }
         });

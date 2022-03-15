@@ -1,17 +1,21 @@
 package com.ngoctin.intuitionmobile.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ngoctin.intuitionmobile.R;
+import com.ngoctin.intuitionmobile.activities.SingleProductActivity;
 import com.ngoctin.intuitionmobile.models.Product;
 
 import java.util.List;
@@ -77,6 +81,17 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter {
         ((TextView)holder.itemView.findViewById(R.id.productName)).setText( "Name : " +  product.getName());
         ((TextView)holder.itemView.findViewById(R.id.productPrice)).setText("Price : " + product.getPrice());
 
+        Button btnDetail = holder.itemView.findViewById(R.id.btnDetail);
+        btnDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SingleProductActivity.class);
+                Toast.makeText(context, "onBindViewHolder - ID : " + product.getId(), Toast.LENGTH_SHORT).show();
+                intent.putExtra("selected_product_id", product.getId());
+                getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -89,8 +104,11 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        Button btnDetails;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
+
+
     }
 }
