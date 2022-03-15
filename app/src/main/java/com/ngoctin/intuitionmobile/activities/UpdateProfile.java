@@ -50,11 +50,11 @@ public class UpdateProfile extends AppCompatActivity {
         SharedPreferences sharedPreferences = this.getSharedPreferences("user_store",this.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("authenticated_user","");
-        AuthenticatedUser authenticatedUser = gson.fromJson(json,AuthenticatedUser.class);
+        AuthenticatedUser authenticatedUser = gson.fromJson(json, AuthenticatedUser.class);
         UpdateUser user = gson.fromJson(json, UpdateUser.class);
 //        AuthenticatedUser authenticatedUser = gson.fromJson(json,AuthenticatedUser.class);
 //        Toast.makeText(UpdateProfile.this, "This is Update Profile : " + user, Toast.LENGTH_LONG).show();
-        Toast.makeText(this, "User ID  : " + authenticatedUser.getId(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "User ID  : " + authenticatedUser.getId(), Toast.LENGTH_SHORT).show();
         String jwt = user.getJwt();
         editUsername = (EditText) findViewById(R.id.etUsername);
         editFullname = (EditText) findViewById(R.id.etFullname);
@@ -86,7 +86,7 @@ public class UpdateProfile extends AppCompatActivity {
                 String message = "Update Successfully!";
                 switch (validateInput) {
                     case 0:
-//                        ApplicationUtils.clearAllEditTexts(editTextList);
+//                      ApplicationUtils.clearAllEditTexts(editTextList);
                         UserService.update(jwt, username ,message, infoUser, UpdateProfile.this);
                         break;
 

@@ -2,8 +2,11 @@ package com.ngoctin.intuitionmobile.apis;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.ngoctin.intuitionmobile.models.Address;
 import com.ngoctin.intuitionmobile.models.InforToUpdate;
 import com.ngoctin.intuitionmobile.models.UpdateUser;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -34,4 +37,8 @@ public interface UserAPI {
     Call<InforToUpdate> updateUser(@Header("Authorization") String jwt,
                                    @Path("name") String username,
                                    @Body InforToUpdate userInfo );
+
+    @GET("/getAddress/{id}")
+    Call<List<Address>> getAddress(@Header("Authorization") String jwt,
+                                   @Path("id") Long id);
 }
