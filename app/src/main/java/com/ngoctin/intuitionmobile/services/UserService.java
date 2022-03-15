@@ -30,7 +30,7 @@ public class UserService {
         });
     }
 
-    public static void update(String jwt,String username , String message, InforToUpdate userInfo, Context context) {
+    public static void update(String jwt, String username , String message, InforToUpdate userInfo, Context context) {
         UserAPI.userAPI.updateUser(jwt, username , userInfo)
                 .enqueue(new Callback<InforToUpdate>() {
                     @Override

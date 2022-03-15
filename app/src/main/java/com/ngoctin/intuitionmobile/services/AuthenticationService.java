@@ -13,6 +13,7 @@ import com.ngoctin.intuitionmobile.activities.LoginActivity;
 import com.ngoctin.intuitionmobile.activities.LoginFailedActivity;
 import com.ngoctin.intuitionmobile.activities.UserHomeScreenActivity;
 import com.ngoctin.intuitionmobile.apis.AuthenticationAPI;
+import com.ngoctin.intuitionmobile.models.Address;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
 import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
