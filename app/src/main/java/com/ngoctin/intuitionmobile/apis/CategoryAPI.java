@@ -23,7 +23,8 @@ public interface CategoryAPI {
     CategoryAPI categoryApi = new Retrofit.Builder()
             .baseUrl("http://" + localhost + ":8080/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .build().create(CategoryAPI.class);
+            .build()
+            .create(CategoryAPI.class);
 
     @GET("searchByLikeName/{name}")
     Call<List<Category>> searchCategories(
