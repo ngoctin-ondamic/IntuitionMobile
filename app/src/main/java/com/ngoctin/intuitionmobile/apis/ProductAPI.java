@@ -3,6 +3,7 @@ package com.ngoctin.intuitionmobile.apis;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ngoctin.intuitionmobile.models.Category;
+import com.ngoctin.intuitionmobile.models.Product;
 
 import java.util.List;
 
@@ -13,22 +14,26 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
 
-public interface CategoryAPI {
+public interface ProductAPI {
 
     String localhost = "192.168.1.14";
     Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
             .create();
 
-    CategoryAPI categoryApi = new Retrofit.Builder()
-            .baseUrl("http://" + localhost + ":8080/api/")
+    ProductAPI productApi = new Retrofit.Builder()
+            .baseUrl("http://" + localhost + ":8080/api/product/")
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-            .create(CategoryAPI.class);
+            .build().create(ProductAPI.class);
 
-    @GET("searchByLikeName/{name}")
-    Call<List<Category>> searchCategories(
+    @GET("getAllProducts")
+    Call<List<Product>> getAllProducts(
+            @Header("Authorization") String jwt);
+
+    @GET("getProducts/{cateID}")
+    Call<List<Product>> getProductsByCateID(
             @Header("Authorization") String jwt,
-            @Path("name") String searchValue);
+            @Path("cateID") int cateID);
+
 
 }
