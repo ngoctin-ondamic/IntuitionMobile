@@ -22,7 +22,7 @@ public interface ProductAPI {
             .create();
 
     ProductAPI productApi = new Retrofit.Builder()
-            .baseUrl("http://" + ApplicationUtils.getLocalhost() + ":8080/api/")
+            .baseUrl("http://" + ApplicationUtils.getLocalhost() + ":8080/api/product/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(ProductAPI.class);
 

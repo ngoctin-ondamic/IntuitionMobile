@@ -26,7 +26,7 @@ public interface UserAPI {
             .create();
 
     UserAPI userAPI = new Retrofit.Builder()
-            .baseUrl("http://" + ApplicationUtils.getLocalhost() + ":8080/api/")
+            .baseUrl("http://" + ApplicationUtils.getLocalhost() + ":8080/api/user/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(UserAPI.class);

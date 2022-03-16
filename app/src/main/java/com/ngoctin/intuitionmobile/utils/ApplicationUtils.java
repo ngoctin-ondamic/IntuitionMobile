@@ -38,6 +38,24 @@ public class ApplicationUtils {
         return authenticatedUser;
     }
 
+    public static AuthenticatedUser getAuthenticatedUser(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user_store",context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("authenticated_user","");
+        AuthenticatedUser authenticatedUser = gson.fromJson(json, AuthenticatedUser.class);
+        return authenticatedUser;
+    }
+
+    public static String getJwt(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user_store",context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("authenticated_user","");
+        AuthenticatedUser authenticatedUser = gson.fromJson(json, AuthenticatedUser.class);
+        String jwt = authenticatedUser.getJwt();
+        System.out.println("getJwt : " + jwt);
+        return jwt;
+    }
+
     public static String getJwt(Activity activity){
         SharedPreferences sharedPreferences = activity.getSharedPreferences("user_store",activity.MODE_PRIVATE);
         Gson gson = new Gson();

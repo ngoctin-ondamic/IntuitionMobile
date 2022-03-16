@@ -19,6 +19,7 @@ import com.ngoctin.intuitionmobile.apis.ProductAPI;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
 import com.ngoctin.intuitionmobile.models.Product;
 import com.ngoctin.intuitionmobile.services.ProductService;
+import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,11 +93,7 @@ public class AllFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(container.getContext(),2);
         RecyclerView productRecyclerView = view.findViewById(R.id.rvAllProducts);
         productRecyclerView.setLayoutManager(gridLayoutManager);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user_store", Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("authenticated_user","");
-        AuthenticatedUser authenticatedUser = gson.fromJson(json,AuthenticatedUser.class);
-        ProductService.getProducts(authenticatedUser.getJwt(),productRecyclerView,adapter,0);
+        ProductService.getProducts(ApplicationUtils.getJwt(getContext()),productRecyclerView,adapter,0);
         return view;
     }
 }
