@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ngoctin.intuitionmobile.models.Category;
 import com.ngoctin.intuitionmobile.models.Product;
+import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.util.List;
 
@@ -16,13 +17,12 @@ import retrofit2.http.Path;
 
 public interface ProductAPI {
 
-    String localhost = "192.168.1.14";
     Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
             .create();
 
     ProductAPI productApi = new Retrofit.Builder()
-            .baseUrl("http://" + localhost + ":8080/api/product/")
+            .baseUrl("http://" + ApplicationUtils.getLocalhost() + ":8080/api/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(ProductAPI.class);
 

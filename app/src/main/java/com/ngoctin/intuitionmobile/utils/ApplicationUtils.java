@@ -30,9 +30,6 @@ public class ApplicationUtils {
             editText.setText("");
         }
     }
-
-
-
     public static AuthenticatedUser getAuthenticatedUser(Activity activity){
         SharedPreferences sharedPreferences = activity.getSharedPreferences("user_store",activity.MODE_PRIVATE);
         Gson gson = new Gson();
@@ -50,6 +47,9 @@ public class ApplicationUtils {
         return jwt;
     }
 
-
+    public static String getLocalhost(){
+        String localhost = "192.168.130.2";
+        return localhost;
+    }
 
 }

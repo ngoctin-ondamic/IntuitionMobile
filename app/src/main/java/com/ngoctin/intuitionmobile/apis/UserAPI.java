@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.ngoctin.intuitionmobile.models.Address;
 import com.ngoctin.intuitionmobile.models.InforToUpdate;
 import com.ngoctin.intuitionmobile.models.UpdateUser;
+import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.util.List;
 
@@ -19,12 +20,13 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface UserAPI {
+
     Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
             .create();
 
     UserAPI userAPI = new Retrofit.Builder()
-            .baseUrl("http://192.168.56.1:8080/api/user/")
+            .baseUrl("http://" + ApplicationUtils.getLocalhost() + ":8080/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(UserAPI.class);
