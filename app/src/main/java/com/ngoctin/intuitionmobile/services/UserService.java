@@ -1,13 +1,16 @@
 package com.ngoctin.intuitionmobile.services;
 
-import android.app.Dialog;
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.ngoctin.intuitionmobile.apis.UserAPI;
 import com.ngoctin.intuitionmobile.models.InforToUpdate;
-import com.ngoctin.intuitionmobile.models.RegisterUserRequest;
-import com.ngoctin.intuitionmobile.models.UpdateUser;
+import com.ngoctin.intuitionmobile.models.UpdateProfileRequest;
+import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,15 +19,23 @@ import retrofit2.Response;
 public class UserService {
 
     public static void getUserInfo(String jwt, Context context) {
-        UserAPI.userAPI.getUserInfo(jwt).enqueue(new Callback<UpdateUser>() {
+        UserAPI.userAPI.getUserInfo(jwt).enqueue(new Callback<UpdateProfileRequest>() {
             @Override
-            public void onResponse(Call<UpdateUser> call, Response<UpdateUser> response) {
-                UpdateUser user = response.body();
-                Toast.makeText(context, "Response: " + user, Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<UpdateProfileRequest> call, Response<UpdateProfileRequest> response) {
+                if(response.body() != null) {
+                    UpdateProfileRequest updateProfileRequest = response.body();
+                    updateProfileRequest.setJwt(jwt);
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("userProfile_store", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    Gson gson = new Gson();
+                    String userProfile = gson.toJson(updateProfileRequest);
+                    editor.putString("user_profile", userProfile);
+                    editor.commit();
+                }
             }
 
             @Override
-            public void onFailure(Call<UpdateUser> call, Throwable t) {
+            public void onFailure(Call<UpdateProfileRequest> call, Throwable t) {
 
             }
         });
@@ -35,9 +46,11 @@ public class UserService {
                 .enqueue(new Callback<InforToUpdate>() {
                     @Override
                     public void onResponse(Call<InforToUpdate> call, Response<InforToUpdate> response) {
-                        System.out.println("update : " + message);
+                        System.out.println(response);
                         if(response.code() == 200){
                             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(context, "Update Failed!", Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -47,6 +60,30 @@ public class UserService {
                     }
                 });
     }
+
+    public static void getUpdateProfile(Activity activity, EditText editUsername,
+                                        EditText editFullname, EditText editPhonenumber, EditText editEmail){
+        String jwt = ApplicationUtils.getJwt(activity);
+        UserAPI.userAPI
+                .getUserInfo(jwt)
+                .enqueue(new Callback<UpdateProfileRequest>() {
+                    @Override
+                    public void onResponse(Call<UpdateProfileRequest> call, Response<UpdateProfileRequest> response) {
+//                        System.out.println("getUpdateProfile : " + response.body().toString());
+                        editUsername.setText(response.body().getUsername());
+                        editUsername.setFocusable(false);
+                        editFullname.setText(response.body().getFullname());
+                        editPhonenumber.setText(response.body().getPhoneNumber());
+                        editEmail.setText(response.body().getEmail());
+                     }
+
+                    @Override
+                    public void onFailure(Call<UpdateProfileRequest> call, Throwable t) {
+
+                    }
+                });
+    }
+
 
     public static int validate(InforToUpdate inforUser){
 

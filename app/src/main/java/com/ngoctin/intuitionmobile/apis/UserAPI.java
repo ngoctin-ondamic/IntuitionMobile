@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ngoctin.intuitionmobile.models.Address;
 import com.ngoctin.intuitionmobile.models.InforToUpdate;
-import com.ngoctin.intuitionmobile.models.UpdateUser;
+import com.ngoctin.intuitionmobile.models.UpdateProfileRequest;
 import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.util.List;
@@ -17,7 +17,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface UserAPI {
 
@@ -32,7 +31,7 @@ public interface UserAPI {
             .create(UserAPI.class);
 
     @GET("getUserInfo")
-    Call<UpdateUser> getUserInfo(@Header("Authorization") String jwt);
+    Call<UpdateProfileRequest> getUserInfo(@Header("Authorization") String jwt);
 
 
     @PUT("update/{name}")
@@ -40,7 +39,7 @@ public interface UserAPI {
                                    @Path("name") String username,
                                    @Body InforToUpdate userInfo );
 
-    @GET("/getAddress/{id}")
+    @GET("getAddress/{id}")
     Call<List<Address>> getAddress(@Header("Authorization") String jwt,
                                    @Path("id") Long id);
 }

@@ -7,11 +7,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
-import com.ngoctin.intuitionmobile.models.CartItem;
+import com.ngoctin.intuitionmobile.models.UpdateProfileRequest;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 public class ApplicationUtils {
@@ -70,4 +68,11 @@ public class ApplicationUtils {
         return localhost;
     }
 
+    public static UpdateProfileRequest getProfile(Activity activity) {
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("userProfile_store", activity.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("user_profile", "");
+        UpdateProfileRequest updateProfileRequest = gson.fromJson(json, UpdateProfileRequest.class);
+        return updateProfileRequest;
+    }
 }

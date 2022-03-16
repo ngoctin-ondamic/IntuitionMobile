@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.ngoctin.intuitionmobile.R;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
 import com.ngoctin.intuitionmobile.models.InforToUpdate;
+import com.ngoctin.intuitionmobile.models.UpdateProfileRequest;
 import com.ngoctin.intuitionmobile.models.UpdateUser;
 import com.ngoctin.intuitionmobile.services.UserService;
 import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
@@ -37,8 +38,13 @@ public class UpdateProfile extends AppCompatActivity {
         setContentView(R.layout.activity_update_profile);
         btnBack = findViewById(R.id.btnBack);
         btnUpdate = findViewById(R.id.btnUpdate);
-
-
+        String jwt = ApplicationUtils.getJwt(this);
+        UserService.getUserInfo(jwt, UpdateProfile.this);
+        editUsername = findViewById(R.id.etUsername);
+        editFullname = findViewById(R.id.etFullname);
+        editPhonenumber = findViewById(R.id.etPhoneNumber);
+        editEmail = findViewById(R.id.etEmail);
+        UserService.getUpdateProfile(this, editUsername, editFullname, editPhonenumber, editEmail);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,18 +53,6 @@ public class UpdateProfile extends AppCompatActivity {
             }
         });
         AuthenticatedUser user = ApplicationUtils.getAuthenticatedUser(this);
-        String jwt = ApplicationUtils.getJwt(this);
-        editUsername = (EditText) findViewById(R.id.etUsername);
-        editFullname = (EditText) findViewById(R.id.etFullname);
-        editPhonenumber = (EditText) findViewById(R.id.etPhoneNumber);
-        editEmail = (EditText) findViewById(R.id.etEmail);
-        editUsername.setText(user.getUsername());
-        editUsername.setFocusable(false);
-        editFullname.setText(user.getFullname());
-        editPhonenumber.setText(user.getPhoneNumber());
-        editEmail.setText(user.getEmail());
-
-//
 //        Toast.makeText(UpdateProfile.this, "user : " + user.getPassword(), Toast.LENGTH_SHORT).show();
         List<EditText> editTextList = new ArrayList<>();
         editTextList.add(editFullname);
@@ -75,12 +69,11 @@ public class UpdateProfile extends AppCompatActivity {
                 InforToUpdate infoUser = new InforToUpdate(fullname, phonenumber, email);
                 int validateInput = UserService.validate(infoUser);
                 String message = "Update Successfully!";
-                System.out.println("validateInput : " + validateInput);
+//                System.out.println("validateInput : " + validateInput);
                 switch (validateInput) {
                     case 0:
-                        System.out.println("onClick : " + message);
-                        UserService.update(jwt, username ,message, infoUser, UpdateProfile.this);
-                        ApplicationUtils.clearAllEditTexts(editTextList);
+//                        System.out.println("onClick : " + message);
+                        UserService.update(jwt, username, message, infoUser, UpdateProfile.this);
                         break;
                     case 1:
                         message = "Full name can only contain letters ! ";
