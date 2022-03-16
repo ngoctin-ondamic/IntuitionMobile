@@ -66,7 +66,7 @@ public class ApplicationUtils {
     }
 
     public static String getLocalhost(){
-        String localhost = "192.168.130.2";
+        String localhost = "192.168.56.1";
         return localhost;
     }
 

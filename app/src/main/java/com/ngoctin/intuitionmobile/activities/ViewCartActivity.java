@@ -37,4 +37,37 @@ public class ViewCartActivity extends AppCompatActivity {
         cartRecyclerView.setAdapter(adapter);
         cartRecyclerView.setLayoutManager(linearLayoutManager);
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("onRestart");
+        setContentView(R.layout.activity_view_cart);
+        List<CartItem> cart = CartService.getCart(this);
+        TextView tvCartTotalPrice = findViewById(R.id.tvCartTotalPrice);
+        int totalPrice = CartService.getCartTotal(cart);
+        tvCartTotalPrice.setText(totalPrice + "");
+        CartItemRecyclerViewAdapter adapter = new CartItemRecyclerViewAdapter(cart,this,tvCartTotalPrice);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        RecyclerView cartRecyclerView = findViewById(R.id.rvCart);
+        cartRecyclerView.setAdapter(adapter);
+        cartRecyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("onResume");
+        setContentView(R.layout.activity_view_cart);
+        List<CartItem> cart = CartService.getCart(this);
+        System.out.println(" onResume - Cart : " + cart.toString());
+        TextView tvCartTotalPrice = findViewById(R.id.tvCartTotalPrice);
+        int totalPrice = CartService.getCartTotal(cart);
+        tvCartTotalPrice.setText(totalPrice + "");
+        CartItemRecyclerViewAdapter adapter = new CartItemRecyclerViewAdapter(cart,this,tvCartTotalPrice);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        RecyclerView cartRecyclerView = findViewById(R.id.rvCart);
+        cartRecyclerView.setAdapter(adapter);
+        cartRecyclerView.setLayoutManager(linearLayoutManager);
+    }
 }
