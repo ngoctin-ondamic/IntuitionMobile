@@ -105,10 +105,12 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
                 int price = Integer.parseInt(cartItem.getProduct().getPrice()) * currQuantity;
                 tvCartItemPrice.setText(price + "");
                 tvCartItemQuantity.setText(currQuantity + "");
-                int cartTotalPrice = Integer.parseInt(totalPrice.getText().toString()) + Integer.parseInt(cartItem.getProduct().getPrice());
-                totalPrice.setText(cartTotalPrice + "");
                 List<CartItem> cartItems = CartService.getCart(getContext());
-                CartService.updateCartItemQuantity(getContext(),cartItems,cartItem.getCartItemID(),1,0);
+                setCart(CartService.updateCartItemQuantity(getContext(),cartItems,cartItem.getCartItemID(),1,1));
+                notifyDataSetChanged();
+                int cartTotalPrice = CartService.getCartTotal(cartItems);
+                totalPrice.setText(cartTotalPrice + "");
+
             }
         });
         cartItemDecreaseBtn.setOnClickListener(new View.OnClickListener() {
@@ -116,20 +118,23 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
             public void onClick(View view) {
                 int currQuantity = Integer.parseInt(tvCartItemQuantity.getText().toString());
                 currQuantity -= 1;
+                System.out.println("onClick : " + currQuantity);
                 if(currQuantity == 0){
-                    cart.remove(tmp);
-                    notifyItemRemoved(tmp);
-                    notifyItemChanged(tmp, cart.size());
-                    int cartTotalPrice = Integer.parseInt(totalPrice.getText().toString()) - Integer.parseInt(cartItem.getProduct().getPrice());
+                    List<CartItem> cartItems = CartService.getCart(getContext());
+                    setCart(CartService.removeFromCart(getContext(),cartItems,cartItem.getCartItemID()));
+                    cart.remove(cartItem);
+                    notifyDataSetChanged();
+                    int cartTotalPrice = CartService.getCartTotal(cartItems);
                     totalPrice.setText(cartTotalPrice + "");
                 }else{
                     int price = Integer.parseInt(cartItem.getProduct().getPrice()) * currQuantity;
                     tvCartItemPrice.setText(price + "");
                     tvCartItemQuantity.setText(currQuantity + "");
-                    int cartTotalPrice = Integer.parseInt(totalPrice.getText().toString()) - Integer.parseInt(cartItem.getProduct().getPrice());
-                    totalPrice.setText(cartTotalPrice + "");
                     List<CartItem> cartItems = CartService.getCart(getContext());
-                    CartService.updateCartItemQuantity(getContext(),cartItems,cartItem.getCartItemID(),1,1);
+                    setCart(CartService.updateCartItemQuantity(getContext(),cartItems,cartItem.getCartItemID(),1,0));
+                    notifyDataSetChanged();
+                    int cartTotalPrice = CartService.getCartTotal(cartItems);
+                    totalPrice.setText(cartTotalPrice + "");
                 }
             }
         });

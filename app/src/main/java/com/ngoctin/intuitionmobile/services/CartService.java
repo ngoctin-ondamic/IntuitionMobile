@@ -33,21 +33,36 @@ public class CartService {
     }
 
 
-    public static boolean updateCartItemQuantity(Context context, List<CartItem> cart,int cartID ,int value,int type){
-        CartItem cartItem = findCartItemBYID(cart,cartID);
-        if(cartItem != null){
-            if(type == 0){
-                cartItem.setQuantity(cartItem.getQuantity() + value);
-            }else{
-                cartItem.setQuantity(cartItem.getQuantity() - value);
+    public static List<CartItem> updateCartItemQuantity(Context context, List<CartItem> cart,int cartID ,int value,int type){
+        if(type == 0){
+            for (CartItem cartItem : cart ) {
+                if(cartItem.getCartItemID() == cartID){
+                    cartItem.setQuantity(cartItem.getQuantity() - value);
+                    updateCart(context,cart);
+                }
             }
-            return true;
+        }else{
+            for (CartItem cartItem : cart ) {
+                if(cartItem.getCartItemID() == cartID){
+                    cartItem.setQuantity(cartItem.getQuantity() + value);
+                    updateCart(context,cart);
+                }
+            }
         }
-        if(updateCart(context,cart)){
-            System.out.println("Cart in updateCartItemQuantity : " + cart.toArray());
-            return true;
+        return cart;
+    }
+
+    public static List<CartItem> removeFromCart(Context context, List<CartItem> cart,int cartID){
+        System.out.println("CartService - removeFromCart : " + cartID);
+        for (CartItem cartItem: cart) {
+            System.out.println("CartService - cartItemSingID : " + cartItem.getCartItemID());
+            if(cartItem.getCartItemID() == cartID){
+                cart.remove(cartItem);
+                System.out.println("CartService - cart : " + cart.toArray());
+                updateCart(context,cart);
+            }
         }
-        return false;
+        return cart;
     }
 
     public static List<CartItem> getCart(Activity activity){
