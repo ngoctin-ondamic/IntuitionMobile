@@ -108,7 +108,7 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
                 List<CartItem> cartItems = CartService.getCart(getContext());
                 setCart(CartService.updateCartItemQuantity(getContext(),cartItems,cartItem.getCartItemID(),1,1));
                 notifyDataSetChanged();
-                float cartTotalPrice = Float.parseFloat(totalPrice.getText().toString()) - Float.parseFloat(cartItem.getProduct().getPrice());
+                float cartTotalPrice = Float.parseFloat(totalPrice.getText().toString()) + Float.parseFloat(cartItem.getProduct().getPrice());
                 totalPrice.setText(cartTotalPrice + "");
 
             }
