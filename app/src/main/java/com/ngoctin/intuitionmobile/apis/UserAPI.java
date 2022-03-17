@@ -41,5 +41,5 @@ public interface UserAPI {
 
     @GET("getAddress/{id}")
     Call<List<Address>> getAddress(@Header("Authorization") String jwt,
-                                   @Path("id") Long id);
+                                   @Path("id") int id);
 }

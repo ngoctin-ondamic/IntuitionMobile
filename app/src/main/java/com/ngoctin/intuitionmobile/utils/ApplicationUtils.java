@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.ngoctin.intuitionmobile.models.Address;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
 import com.ngoctin.intuitionmobile.models.UpdateProfileRequest;
 
@@ -75,4 +76,5 @@ public class ApplicationUtils {
         UpdateProfileRequest updateProfileRequest = gson.fromJson(json, UpdateProfileRequest.class);
         return updateProfileRequest;
     }
+
 }

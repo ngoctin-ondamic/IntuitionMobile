@@ -39,5 +39,4 @@ public interface ProductAPI {
     Call<Product> getProductByID(
             @Header("Authorization") String jwt,
             @Path("productID") int productID);
-
 }

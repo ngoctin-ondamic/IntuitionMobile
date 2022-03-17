@@ -3,13 +3,13 @@ package com.ngoctin.intuitionmobile.models;
 import java.io.Serializable;
 
 public class Address implements Serializable  {
-    private Long id;
+    private int id;
     private String value;
 
     public Address() {
     }
 
-    public Address(Long id, String value) {
+    public Address(int id, String value) {
         this.id = id;
         this.value = value;
     }
@@ -18,11 +18,11 @@ public class Address implements Serializable  {
         this.value = value;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

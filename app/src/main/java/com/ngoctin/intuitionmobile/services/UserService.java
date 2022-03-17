@@ -104,6 +104,8 @@ public class UserService {
         return 0;
     }
 
+
+
 //    public static int validate(RegisterUserRequest registerUserRequest, String confirmPassword){
 //        if(!registerUserRequest.getUsername()
 //                .matches("^[a-zA-Z]*([._](?![._])|[a-zA-Z0-9]){3,12}[a-zA-Z0-9]$")){
