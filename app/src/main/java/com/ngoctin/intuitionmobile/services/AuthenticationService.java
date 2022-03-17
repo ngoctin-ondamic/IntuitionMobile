@@ -17,6 +17,7 @@ import com.ngoctin.intuitionmobile.models.Address;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
 import com.ngoctin.intuitionmobile.models.CartItem;
 import com.ngoctin.intuitionmobile.models.Product;
+import com.ngoctin.intuitionmobile.models.Promotion;
 import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class AuthenticationService {
                                                 intent.putExtra("fullname",response.body().getFullname());
 
                                                 // After login
-                                                // Create SharedPreference to save data [userInfor, Cart]
+                                                // Create SharedPreference to save data [userInfor, Cart, Promotions]
 
                                                 AuthenticatedUser authenticatedUser = response.body();
                                                 authenticatedUser.setJwt(jwt);
@@ -56,11 +57,16 @@ public class AuthenticationService {
                                                 Gson gson = new Gson();
                                                 String userInformation = gson.toJson(authenticatedUser);
                                                 editor.putString("authenticated_user",userInformation);
+
                                                 List<CartItem> cart = new ArrayList<>();
                                                 String cartJson = gson.toJson(cart);
                                                 editor.putString("cart",cartJson);
-                                                editor.commit();
 
+                                                List<Promotion> promotions = new ArrayList<>();
+                                                String promotionsJson = gson.toJson(promotions);
+                                                editor.putString("promotions",promotionsJson);
+
+                                                editor.commit();
                                                 context.startActivity(intent);
                                             }else{
                                                 Toast.makeText(context, "Account [" + username + "] does not exist !", Toast.LENGTH_SHORT).show();

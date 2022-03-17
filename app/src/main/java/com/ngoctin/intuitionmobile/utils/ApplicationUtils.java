@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
 import com.ngoctin.intuitionmobile.models.CartItem;
+import com.ngoctin.intuitionmobile.models.Promotion;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -65,8 +66,26 @@ public class ApplicationUtils {
         return jwt;
     }
 
+    public static int getCurrentUserID(Activity activity){
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("user_store",activity.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("authenticated_user","");
+        AuthenticatedUser authenticatedUser = gson.fromJson(json, AuthenticatedUser.class);
+        int id = authenticatedUser.getId();
+        return id;
+    }
+
+    public static int getCurrentUserID(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user_store",Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("authenticated_user","");
+        AuthenticatedUser authenticatedUser = gson.fromJson(json, AuthenticatedUser.class);
+        int id = authenticatedUser.getId();
+        return id;
+    }
+
     public static String getLocalhost(){
-        String localhost = "192.168.56.1";
+        String localhost = "192.168.130.2";
         return localhost;
     }
 

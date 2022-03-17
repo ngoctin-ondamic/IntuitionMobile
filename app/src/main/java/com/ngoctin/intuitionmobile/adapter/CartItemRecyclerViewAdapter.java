@@ -108,7 +108,7 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
                 List<CartItem> cartItems = CartService.getCart(getContext());
                 setCart(CartService.updateCartItemQuantity(getContext(),cartItems,cartItem.getCartItemID(),1,1));
                 notifyDataSetChanged();
-                int cartTotalPrice = CartService.getCartTotal(cartItems);
+                float cartTotalPrice = Float.parseFloat(totalPrice.getText().toString()) - Float.parseFloat(cartItem.getProduct().getPrice());
                 totalPrice.setText(cartTotalPrice + "");
 
             }
@@ -124,7 +124,10 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
                     setCart(CartService.removeFromCart(getContext(),cartItems,cartItem.getCartItemID()));
                     cart.remove(cartItem);
                     notifyDataSetChanged();
-                    int cartTotalPrice = CartService.getCartTotal(cartItems);
+                    float cartTotalPrice = Float.parseFloat(totalPrice.getText().toString()) - Float.parseFloat(cartItem.getProduct().getPrice());
+                    if(cartTotalPrice < 0){
+                        cartTotalPrice = 0;
+                    }
                     totalPrice.setText(cartTotalPrice + "");
                 }else{
                     int price = Integer.parseInt(cartItem.getProduct().getPrice()) * currQuantity;
@@ -133,7 +136,10 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
                     List<CartItem> cartItems = CartService.getCart(getContext());
                     setCart(CartService.updateCartItemQuantity(getContext(),cartItems,cartItem.getCartItemID(),1,0));
                     notifyDataSetChanged();
-                    int cartTotalPrice = CartService.getCartTotal(cartItems);
+                    float cartTotalPrice = Float.parseFloat(totalPrice.getText().toString()) - Float.parseFloat(cartItem.getProduct().getPrice());
+                    if(cartTotalPrice < 0){
+                        cartTotalPrice = 0;
+                    }
                     totalPrice.setText(cartTotalPrice + "");
                 }
             }

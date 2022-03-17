@@ -32,6 +32,14 @@ public class CartService {
         return total;
     }
 
+    public static int setCartTotal(List<CartItem> cart){
+        int total = 0;
+        for (CartItem cartItem: cart) {
+            total += ((Integer.parseInt(cartItem.getProduct().getPrice())) * cartItem.getQuantity());
+        }
+        return total;
+    }
+
 
     public static List<CartItem> updateCartItemQuantity(Context context, List<CartItem> cart,int cartID ,int value,int type){
         if(type == 0){
