@@ -84,6 +84,7 @@
             android:textSize="8sp"
             android:background="@drawable/custom_button"
             android:layout_marginLeft="40dp"
+            android:textColor="@color/white"
             android:layout_marginRight="40dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

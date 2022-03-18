@@ -3,6 +3,7 @@ package com.ngoctin.intuitionmobile.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,7 @@ import retrofit2.Response;
 public class SingleProductActivity extends AppCompatActivity {
 
     List<CartItem> cart = null;
+    private ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,15 @@ public class SingleProductActivity extends AppCompatActivity {
                 SingleProductActivity.this,
                 productImage,productName,productPrice,
                 productQuantity,productDesc, productUrl);
+
+        btnBack = findViewById(R.id.btnBackToHome);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SingleProductActivity.this, UserHomeScreenActivity.class);
+                startActivity(intent);
+            }
+        });
         Button addToCartButton = findViewById(R.id.btnAddToCart);
         cart = CartService.getCart(this);
         addToCartButton.setOnClickListener(new View.OnClickListener() {

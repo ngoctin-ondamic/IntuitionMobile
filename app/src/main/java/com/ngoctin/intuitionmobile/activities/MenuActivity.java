@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.ngoctin.intuitionmobile.R;
 
 public class MenuActivity extends AppCompatActivity {
+
+    private ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,15 @@ public class MenuActivity extends AppCompatActivity {
         Button forwardCartButton = this.findViewById(R.id.btnForwardCart);
         Button AddressButton = this.findViewById(R.id.btnForwardAddress);
         Button PromotionButton = this.findViewById(R.id.btnForwardPromotion);
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, UserHomeScreenActivity.class);
+                startActivity(intent);
+            }
+        });
+
         signoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

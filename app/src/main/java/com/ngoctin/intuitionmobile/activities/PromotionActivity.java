@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ngoctin.intuitionmobile.R;
@@ -19,11 +20,23 @@ import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.util.List;
 
+
 public class PromotionActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotion);
+
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PromotionActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
         List<Promotion> promotions = PromotionService.getPromotions(this);
         PromotionRecyclerViewAdapter adapter
                 = new PromotionRecyclerViewAdapter(promotions,this);

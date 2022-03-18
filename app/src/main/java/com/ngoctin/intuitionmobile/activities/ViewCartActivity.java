@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,14 @@ public class ViewCartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_cart);
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewCartActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
         List<CartItem> cart = CartService.getCart(this);
         TextView tvCartTotalPrice = findViewById(R.id.tvCartTotalPrice);
         EditText edtVoucher = this.findViewById(R.id.edtVoucher);

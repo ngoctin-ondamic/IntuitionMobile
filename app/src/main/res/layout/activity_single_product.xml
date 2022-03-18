@@ -7,6 +7,40 @@
     android:orientation="vertical"
     tools:context=".activities.SingleProductActivity">
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cl_header"
+        android:padding="16dp"
+        android:background="@color/forest_green"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <ImageView
+            android:id="@+id/btnBackToHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Product Detail"
+            android:textColor="@color/white_smoke"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageView
         android:id="@+id/singleProductImage"
         android:layout_width="match_parent"
@@ -59,6 +93,7 @@
         android:background="@drawable/custom_button"
         android:layout_marginTop="30dp"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:layout_marginLeft="130dp"
         android:text="Add To Cart"/>
 </LinearLayout>
