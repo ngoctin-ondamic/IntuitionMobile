@@ -47,6 +47,58 @@ public class SingleProductActivity extends AppCompatActivity {
         TextView productUrl = findViewById(R.id.tvProductImage);
         CartItemRecyclerViewAdapter cartItemRecyclerViewAdapter = new CartItemRecyclerViewAdapter(SingleProductActivity.this);
         int productID = this.getIntent().getIntExtra("selected_product_id",0);
+        System.out.println("productID : " + productID);
+        ProductService.getProductByID(
+                SingleProductActivity.this,
+                productImage,productName,productPrice,
+                productQuantity,productDesc, productUrl);
+        Button addToCartButton = findViewById(R.id.btnAddToCart);
+        cart = CartService.getCart(this);
+        addToCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Product product = new Product(
+                        productName.getText().toString(),
+                        productPrice.getText().toString(),
+                        productDesc.getText().toString(),
+                        productUrl.getText().toString()
+                );
+                CartItem cartItem = CartService.findCartItemBYID(cart,productID);
+                if(cartItem == null){
+                    System.out.println("SingleProductActivity : null");
+                    cartItem = new CartItem(productID,product,1);
+                    cart.add(cartItem);
+                }else{
+                    System.out.println("SingleProductActivity : not null");
+                    for (CartItem item: cart) {
+                        if(item.getCartItemID() == productID){
+                            System.out.println("itemQuantity" + item.getQuantity());
+                            item.setQuantity(item.getQuantity() + 1);
+                            System.out.println("itemQuantity" + item.getQuantity());
+                        }
+                    }
+                }
+                if(CartService.updateCart(SingleProductActivity.this,cart)){
+                    Toast.makeText(SingleProductActivity.this, "Add To Cart Succesfully !", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(SingleProductActivity.this, "Add To Cart Failed !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ImageView productImage = findViewById(R.id.singleProductImage);
+        TextView  productName = findViewById(R.id.singleProductName);
+        TextView  productPrice = findViewById(R.id.singleProductPrice);
+        TextView  productQuantity = findViewById(R.id.singleProductAvailable);
+        TextView productDesc = findViewById(R.id.singleProductDescription);
+        TextView productUrl = findViewById(R.id.tvProductImage);
+        CartItemRecyclerViewAdapter cartItemRecyclerViewAdapter = new CartItemRecyclerViewAdapter(SingleProductActivity.this);
+        int productID = this.getIntent().getIntExtra("selected_product_id",0);
+        System.out.println("productID : " + productID);
         ProductService.getProductByID(
                 SingleProductActivity.this,
                 productImage,productName,productPrice,

@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".activities.OrderSuccessfullyActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.PromotionActivity"
             android:exported="false" />
         <activity
