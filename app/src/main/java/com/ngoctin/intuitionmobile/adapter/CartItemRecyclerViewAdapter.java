@@ -91,7 +91,7 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
         System.out.println("tvCartItemQuantity.getText().toString() : " + tvCartItemQuantity.getText().toString());
         int cartItemPrice = Integer.parseInt(cartItem.getProduct().getPrice()) * (Integer.parseInt(tvCartItemQuantity.getText().toString()));
         TextView tvCartItemPrice = (TextView)holder.itemView.findViewById(R.id.tvCartItemPrice);
-        tvCartItemPrice.setText(cartItemPrice + "");
+        tvCartItemPrice.setText( "$"+ cartItemPrice + "");
         Button cartItemIncreaseBtn  = holder.itemView.findViewById(R.id.btnCartItemIncrease);
         Button cartItemDecreaseBtn  = holder.itemView.findViewById(R.id.btnCartItemDecrease);
 
