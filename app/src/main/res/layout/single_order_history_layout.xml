@@ -11,14 +11,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:textAlignment="center"
-            android:paddingTop="5dp"
             android:layout_weight="1"
-            android:text="Order No" />
+            android:paddingTop="5dp"
+            android:text="Order No"
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvOrderHistoryNo"
@@ -42,6 +44,7 @@
             android:textAlignment="center"
             android:paddingTop="5dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:text="Created Date" />
 
         <TextView
@@ -66,6 +69,7 @@
             android:textAlignment="center"
             android:paddingTop="5dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:text="Total Price" />
 
         <TextView
@@ -74,6 +78,7 @@
             android:layout_height="50dp"
             android:textAlignment="center"
             android:paddingTop="5dp"
+            android:textStyle="bold"
             android:layout_weight="1"
             android:text="" />
     </LinearLayout>
@@ -85,8 +90,7 @@
         android:layout_weight="1"
         android:background="@drawable/custom_button"
         android:drawableStart="@drawable/ic_forward"
-        android:paddingLeft="15dp"
-        />
+        android:paddingLeft="15dp" />
 
 
 </LinearLayout>

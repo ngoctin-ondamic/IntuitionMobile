@@ -29,9 +29,23 @@
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/fragment_jeans.xml" value="0.1838768115942029" />
         <entry key="..\:/FPT-7/PRM/IntuitionMobile/app/src/main/res/layout/fragment_shirt.xml" value="0.1" />
         <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/drawable/border.xml" value="0.2625" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_address.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_login.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_login_failed.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_menu.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_order_history.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_order_successfully.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_promotion.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_sign_up.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_single_product.xml" value="0.259375" />
         <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_update_profile.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_user_home_screen.xml" value="0.259375" />
         <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/activity_view_cart.xml" value="0.4" />
         <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/cart_item_layout.xml" value="0.536" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/fragment_all.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/product_item_layout.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/single_order_history_layout.xml" value="0.259375" />
+        <entry key="..\:/MobileFinalProject/18_03_2022/IntuitionMobile/app/src/main/res/layout/single_voucher_layout.xml" value="0.259375" />
         <entry key="..\:/MobileFinalProject/IntuitionMobile/app/src/main/res/layout/activity_menu.xml" value="0.4" />
         <entry key="..\:/MobileFinalProject/IntuitionMobile/app/src/main/res/layout/activity_promotion.xml" value="0.259375" />
         <entry key="..\:/MobileFinalProject/IntuitionMobile/app/src/main/res/layout/activity_single_product.xml" value="0.22826086956521738" />
