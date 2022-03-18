@@ -27,16 +27,6 @@ public class PromotionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotion);
-
-        ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PromotionActivity.this, MenuActivity.class);
-                startActivity(intent);
-            }
-        });
-
         List<Promotion> promotions = PromotionService.getPromotions(this);
         PromotionRecyclerViewAdapter adapter
                 = new PromotionRecyclerViewAdapter(promotions,this);
@@ -51,5 +41,13 @@ public class PromotionActivity extends AppCompatActivity {
                         adapter,
                         ApplicationUtils.getCurrentUserID(this));
 
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PromotionActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
