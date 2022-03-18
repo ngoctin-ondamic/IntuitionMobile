@@ -23,11 +23,20 @@ public class MenuActivity extends AppCompatActivity {
         Button forwardCartButton = this.findViewById(R.id.btnForwardCart);
         Button AddressButton = this.findViewById(R.id.btnForwardAddress);
         Button PromotionButton = this.findViewById(R.id.btnForwardPromotion);
+        Button MyOrderButton = this.findViewById(R.id.btnOrderHistory);
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this, UserHomeScreenActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        MyOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this,OrderHistoryActivity.class);
                 startActivity(intent);
             }
         });

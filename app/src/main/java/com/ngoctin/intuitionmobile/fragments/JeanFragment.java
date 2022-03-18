@@ -79,7 +79,7 @@ public class JeanFragment extends Fragment {
         Gson gson = new Gson();
         String json = sharedPreferences.getString("authenticated_user","");
         AuthenticatedUser authenticatedUser = gson.fromJson(json,AuthenticatedUser.class);
-        ProductService.getProducts(authenticatedUser.getJwt(),productRecyclerView,adapter,2);
+        ProductService.getProducts(authenticatedUser.getJwt(),productRecyclerView,adapter,2,null);
         return view;
     }
 }

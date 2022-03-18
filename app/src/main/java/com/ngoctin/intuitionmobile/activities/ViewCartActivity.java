@@ -82,7 +82,7 @@ public class ViewCartActivity extends AppCompatActivity {
                 Long orderID = System.currentTimeMillis();
                 Order order = new Order(orderID,
                         ApplicationUtils.getCurrentUserID(ViewCartActivity.this),
-                        promotionID,1,totalPrice);
+                        promotionID,1,totalPrice,null);
                 List<OrderDetail> orderDetailList = new ArrayList<>();
                 for (CartItem cartItem: cart) {
                     float price = (Integer.parseInt(cartItem.getProduct().getPrice()) * cartItem.getQuantity());

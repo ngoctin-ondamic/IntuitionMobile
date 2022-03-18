@@ -7,13 +7,31 @@ public class Order {
     private int promotionId;
     private int addressId;
     private float orderPrice;
+    private String createDate;
 
-    public Order(Long id, int userID, int promotionId, int addressId, float orderPrice) {
+//    public Order(Long id, int userID, int promotionId, int addressId, float orderPrice) {
+//        this.id = id;
+//        this.userID = userID;
+//        this.promotionId = promotionId;
+//        this.addressId = addressId;
+//        this.orderPrice = orderPrice;
+//    }
+
+    public Order(Long id, int userID, int promotionId, int addressId, float orderPrice, String createDate) {
         this.id = id;
         this.userID = userID;
         this.promotionId = promotionId;
         this.addressId = addressId;
         this.orderPrice = orderPrice;
+        this.createDate = createDate;
+    }
+
+    public String getCreatedDate() {
+        return createDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createDate = createdDate;
     }
 
     public Long getId() {

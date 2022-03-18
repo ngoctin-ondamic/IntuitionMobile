@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -126,8 +127,12 @@ public class PromotionService {
                 .enqueue(new Callback<Boolean>() {
                     @Override
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                        Intent intent = new Intent(context, OrderSuccessfullyActivity.class);
-                        context.startActivity(intent);
+                        if(response.code() == 200 && response.body() == true){
+                            Intent intent = new Intent(context, OrderSuccessfullyActivity.class);
+                            context.startActivity(intent);
+                        }else{
+                            Toast.makeText(context, "Update User_Promotion Failed : " + response.code() + " - " + response.errorBody(), Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override

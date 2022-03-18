@@ -40,4 +40,10 @@ public interface ProductAPI {
             @Header("Authorization") String jwt,
             @Path("productID") int productID);
 
+    @GET("searchByLikeName/{name}")
+    Call<List<Product>> getProductByName(
+            @Header("Authorization") String jwt,
+            @Path("name") String productName);
+
+
 }

@@ -2,12 +2,17 @@ package com.ngoctin.intuitionmobile.services;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ngoctin.intuitionmobile.activities.OrderSuccessfullyActivity;
+import com.ngoctin.intuitionmobile.adapter.OderHistoryAdapter;
 import com.ngoctin.intuitionmobile.apis.OrderAPI;
 import com.ngoctin.intuitionmobile.apis.PromotionAPI;
 import com.ngoctin.intuitionmobile.models.Order;
 import com.ngoctin.intuitionmobile.models.OrderDetail;
+import com.ngoctin.intuitionmobile.models.OrderHistory;
 import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.util.List;
@@ -52,6 +57,28 @@ public class OrderService {
 
                     @Override
                     public void onFailure(Call<Boolean> call, Throwable t) {
+
+                    }
+                });
+    }
+
+    public static void getOrdersByUserID(Context context, String jwt,int userID ,RecyclerView recyclerView, OderHistoryAdapter adapter){
+        OrderAPI.orderApi
+                .getOrderHistoryByUserID(jwt, userID)
+                .enqueue(new Callback<List<Order>>() {
+                    @Override
+                    public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+                        if(response.code() == 200 && response != null){
+                            System.out.println("response.body().get(1).getCreatedDate() : " + response.body().get(1).getCreatedDate());
+                            adapter.setOrders(response.body());
+                            recyclerView.setAdapter(adapter);
+                        }else{
+                            Toast.makeText(context, "View Order His Failed !", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Order>> call, Throwable t) {
 
                     }
                 });

@@ -40,4 +40,9 @@ public interface OrderAPI {
     Call<Boolean> createOrderDetails(
             @Header("Authorization") String jwt,
             @Body List<OrderDetail> orderDetails);
+
+    @GET("getOrderHistoryByUserID/{userID}")
+    Call<List<Order>> getOrderHistoryByUserID(
+            @Header("Authorization") String jwt,
+            @Path("userID") int userID);
 }

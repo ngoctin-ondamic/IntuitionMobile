@@ -43,9 +43,15 @@ public class AllFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String searchValue;
 
     public AllFragment() {
         // Required empty public constructor
+    }
+
+    public AllFragment(String searchValue) {
+        System.out.println("SearchValue (AllFragment) : " + searchValue);
+        this.searchValue = searchValue;
     }
 
     /**
@@ -93,7 +99,8 @@ public class AllFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(container.getContext(),2);
         RecyclerView productRecyclerView = view.findViewById(R.id.rvAllProducts);
         productRecyclerView.setLayoutManager(gridLayoutManager);
-        ProductService.getProducts(ApplicationUtils.getJwt(getContext()),productRecyclerView,adapter,0);
+        System.out.println("SearchValue : " + searchValue);
+        ProductService.getProducts(ApplicationUtils.getJwt(getContext()),productRecyclerView,adapter,0,searchValue);
         return view;
     }
 }
