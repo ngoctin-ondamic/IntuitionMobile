@@ -60,7 +60,6 @@ public class ViewCartActivity extends AppCompatActivity {
         RecyclerView cartRecyclerView = findViewById(R.id.rvCart);
         cartRecyclerView.setAdapter(adapter);
         cartRecyclerView.setLayoutManager(linearLayoutManager);
-
         if(promotion != null){
             promotionID = promotion.getId();
             edtVoucher.setText(promotion.getName());
@@ -75,13 +74,6 @@ public class ViewCartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//        private int userID;
-//        private int promotionId;
-//        private int addressId;
-//        private float orderPrice;
-
-
 
         Button btnForwardCheckOut = this.findViewById(R.id.btnForwardCheckOut);
         btnForwardCheckOut.setOnClickListener(new View.OnClickListener() {

@@ -12,6 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface PromotionAPI {
@@ -28,6 +29,12 @@ public interface PromotionAPI {
     @GET("getPromotionByUserID/{userID}")
     Call<List<Promotion>> getPromotionsFromBEByUserID(
             @Header("Authorization") String jwt,
+            @Path("userID") int userID);
+
+    @PUT("setUserPromotionByUserID/{promotionID}/{userID}")
+    Call<Boolean> setUsedPromotionByUserID(
+            @Header("Authorization") String jwt,
+            @Path("promotionID") int promotionID,
             @Path("userID") int userID);
 
 }

@@ -2,12 +2,14 @@ package com.ngoctin.intuitionmobile.services;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.ngoctin.intuitionmobile.activities.OrderSuccessfullyActivity;
 import com.ngoctin.intuitionmobile.adapter.PromotionRecyclerViewAdapter;
 import com.ngoctin.intuitionmobile.apis.PromotionAPI;
 import com.ngoctin.intuitionmobile.models.CartItem;
@@ -113,6 +115,23 @@ public class PromotionService {
 
                     @Override
                     public void onFailure(Call<List<Promotion>> call, Throwable t) {
+
+                    }
+                });
+    }
+
+    public static void setUserPromotionByUserID(Context context, String jwt, int promotionID, int userID){
+        PromotionAPI.promotionApi
+                .setUsedPromotionByUserID(jwt,promotionID,userID)
+                .enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        Intent intent = new Intent(context, OrderSuccessfullyActivity.class);
+                        context.startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
 
                     }
                 });

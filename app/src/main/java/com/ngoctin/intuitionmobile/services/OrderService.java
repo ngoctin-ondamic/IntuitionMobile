@@ -5,8 +5,10 @@ import android.content.Intent;
 
 import com.ngoctin.intuitionmobile.activities.OrderSuccessfullyActivity;
 import com.ngoctin.intuitionmobile.apis.OrderAPI;
+import com.ngoctin.intuitionmobile.apis.PromotionAPI;
 import com.ngoctin.intuitionmobile.models.Order;
 import com.ngoctin.intuitionmobile.models.OrderDetail;
+import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
 import java.util.List;
 
@@ -34,8 +36,10 @@ public class OrderService {
                                         @Override
                                         public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                                             System.out.println("createOrderDetails");
-                                            Intent intent = new Intent(context, OrderSuccessfullyActivity.class);
-                                            context.startActivity(intent);
+                                            PromotionService
+                                                    .setUserPromotionByUserID(context,jwt,
+                                                            order.getPromotionId(),
+                                                            ApplicationUtils.getCurrentUserID(context));
                                         }
 
                                         @Override
