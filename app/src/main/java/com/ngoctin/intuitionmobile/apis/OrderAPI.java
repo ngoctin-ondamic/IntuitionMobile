@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.ngoctin.intuitionmobile.models.Category;
 import com.ngoctin.intuitionmobile.models.Order;
 import com.ngoctin.intuitionmobile.models.OrderDetail;
+import com.ngoctin.intuitionmobile.models.OrderDetailResponse;
 import com.ngoctin.intuitionmobile.models.RegisterUserRequest;
 import com.ngoctin.intuitionmobile.utils.ApplicationUtils;
 
@@ -45,4 +46,10 @@ public interface OrderAPI {
     Call<List<Order>> getOrderHistoryByUserID(
             @Header("Authorization") String jwt,
             @Path("userID") int userID);
+
+
+    @GET("getOrderDetailsByOrderID/{orderID}")
+    Call<List<OrderDetailResponse>> getOrderDetailsByOrderID(
+            @Header("Authorization") String jwt,
+            @Path("orderID") Long orderID);
 }

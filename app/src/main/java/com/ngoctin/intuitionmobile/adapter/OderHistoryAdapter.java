@@ -1,6 +1,7 @@
 package com.ngoctin.intuitionmobile.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ngoctin.intuitionmobile.R;
+import com.ngoctin.intuitionmobile.activities.ViewOrderDetailsActivity;
 import com.ngoctin.intuitionmobile.models.Order;
 import com.ngoctin.intuitionmobile.models.OrderHistory;
 
@@ -57,6 +59,8 @@ public class OderHistoryAdapter extends RecyclerView.Adapter {
         return viewHolder;
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Order order = orders.get(position);
@@ -67,8 +71,9 @@ public class OderHistoryAdapter extends RecyclerView.Adapter {
         viewDetailsOrderHistoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go To Detail Page
-                System.out.println("getCreatedDate() : " + order.getCreatedDate());
+                Intent intent = new Intent(context, ViewOrderDetailsActivity.class);
+                intent.putExtra("order_id",order.getId().toString());
+                context.startActivity(intent);
             }
         });
     }
