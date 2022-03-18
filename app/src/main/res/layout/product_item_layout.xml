@@ -41,8 +41,8 @@
             android:ems="8"
             android:paddingLeft="10dp"
             android:text="Product Name"
-            android:textFontWeight="500"
-            android:textSize="8sp"
+            android:textFontWeight="800"
+            android:textSize="10sp"
             android:paddingTop="8dp"
             android:textAlignment="center"/>
 
@@ -51,28 +51,28 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             >
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="80dp"
-                android:layout_height="25dp"
-                android:ems="8"
-                android:paddingLeft="10dp"
-                android:text="Price($)"
-                android:textFontWeight="100"
-                android:textSize="8sp"
-                android:paddingTop="8dp"
-                android:textAlignment="center"/>
+<!--            <TextView-->
+<!--                android:id="@+id/text"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:ems="8"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:text="Price"-->
+<!--                android:textFontWeight="500"-->
+<!--                android:textSize="8sp"-->
+<!--                android:paddingTop="8dp"-->
+<!--                android:textAlignment="center"/>-->
             <TextView
                 android:id="@+id/productPrice"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:ems="8"
-                android:paddingLeft="10dp"
+                android:layout_gravity="center"
                 android:paddingTop="8dp"
                 android:text=""
                 android:textAlignment="center"
-                android:textFontWeight="100"
-                android:textSize="8sp" />
+                android:textFontWeight="500"
+                android:textSize="10sp" />
         </LinearLayout>
         <android.widget.Button
             android:id="@+id/btnDetail"
@@ -84,6 +84,7 @@
             android:textSize="8sp"
             android:background="@drawable/custom_button"
             android:layout_marginLeft="40dp"
+            android:textColor="@color/white"
             android:layout_marginRight="40dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

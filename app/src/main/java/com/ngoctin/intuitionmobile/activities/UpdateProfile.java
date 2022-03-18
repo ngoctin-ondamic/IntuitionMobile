@@ -38,7 +38,6 @@ public class UpdateProfile extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
         btnUpdate = findViewById(R.id.btnUpdate);
 
-
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
