@@ -82,13 +82,10 @@ public class CartItemRecyclerViewAdapter extends RecyclerView.Adapter {
                 .load(cartItem.getProduct().getUrl())
                 .centerCrop()
                 .into(productImage);
-        System.out.println("onBindViewHolder : " + cartItem.toString());
         ((TextView)holder.itemView.findViewById(R.id.tvCartItemProductID)).setText(cartItem.getProduct().getId()+"");
         ((TextView)holder.itemView.findViewById(R.id.tvCartItemProductName)).setText(cartItem.getProduct().getName());
         TextView tvCartItemQuantity = holder.itemView.findViewById(R.id.tvCartItemQuantity);
         tvCartItemQuantity.setText(cartItem.getQuantity()+"");
-        System.out.println("cartItem.getProduct().getPrice() : " +cartItem.getProduct().getPrice());
-        System.out.println("tvCartItemQuantity.getText().toString() : " + tvCartItemQuantity.getText().toString());
         int cartItemPrice = Integer.parseInt(cartItem.getProduct().getPrice()) * (Integer.parseInt(tvCartItemQuantity.getText().toString()));
         TextView tvCartItemPrice = (TextView)holder.itemView.findViewById(R.id.tvCartItemPrice);
         tvCartItemPrice.setText( "$"+ cartItemPrice + "");

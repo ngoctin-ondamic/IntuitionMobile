@@ -62,7 +62,6 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View productView = inflater.inflate(R.layout.product_item_layout,parent,false);
         ViewHolder viewHolder = new ViewHolder(productView);
-        // get product_item_layout
         return viewHolder;
     }
 
@@ -86,7 +85,6 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SingleProductActivity.class);
-                Toast.makeText(context, "onBindViewHolder - ID : " + product.getId(), Toast.LENGTH_SHORT).show();
                 intent.putExtra("selected_product_id", product.getId());
                 getContext().startActivity(intent);
             }

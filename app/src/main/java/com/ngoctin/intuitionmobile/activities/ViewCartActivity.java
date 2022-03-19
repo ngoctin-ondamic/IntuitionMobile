@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,16 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.ngoctin.intuitionmobile.R;
 import com.ngoctin.intuitionmobile.adapter.CartItemRecyclerViewAdapter;
 import com.ngoctin.intuitionmobile.models.CartItem;
 import com.ngoctin.intuitionmobile.models.Order;
 import com.ngoctin.intuitionmobile.models.OrderDetail;
-import com.ngoctin.intuitionmobile.models.Product;
 import com.ngoctin.intuitionmobile.models.Promotion;
 import com.ngoctin.intuitionmobile.services.CartService;
 import com.ngoctin.intuitionmobile.services.OrderService;
@@ -65,6 +61,7 @@ public class ViewCartActivity extends AppCompatActivity {
             edtVoucher.setText(promotion.getName());
             totalPrice -= (totalPrice * promotion.getDiscountPercent() / 100) ;
         }
+        EditText edtReceiverAddress = this.findViewById(R.id.edtReceiverAddress);
         tvCartTotalPrice.setText(totalPrice + "");
         Button ApplyVoucherBtn = this.findViewById(R.id.btnApplyVoucher);
         ApplyVoucherBtn.setOnClickListener(new View.OnClickListener() {
@@ -80,9 +77,10 @@ public class ViewCartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Long orderID = System.currentTimeMillis();
+                String address = edtReceiverAddress.getText().toString();
                 Order order = new Order(orderID,
                         ApplicationUtils.getCurrentUserID(ViewCartActivity.this),
-                        promotionID,1,totalPrice,null);
+                        promotionID,0,totalPrice,null,address);
                 List<OrderDetail> orderDetailList = new ArrayList<>();
                 for (CartItem cartItem: cart) {
                     float price = (Integer.parseInt(cartItem.getProduct().getPrice()) * cartItem.getQuantity());
@@ -96,7 +94,8 @@ public class ViewCartActivity extends AppCompatActivity {
                 OrderService.
                         createOrder(ViewCartActivity.this,
                                 ApplicationUtils.getJwt(ViewCartActivity.this),
-                                order,orderDetailList);
+                                order,
+                                orderDetailList);
             }
         });
     }

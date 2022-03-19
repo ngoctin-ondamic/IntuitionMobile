@@ -112,7 +112,6 @@ public class ProductService {
                 .enqueue(new Callback<Product>() {
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {
-                        Toast.makeText(activity, "productUrl : " + response.body().getUrl(), Toast.LENGTH_SHORT).show();
                         Glide.
                                 with(activity)
                                 .load(response.body().getUrl())

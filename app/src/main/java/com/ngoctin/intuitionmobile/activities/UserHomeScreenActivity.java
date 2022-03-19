@@ -92,13 +92,10 @@ public class UserHomeScreenActivity extends AppCompatActivity {
         Button btnSearchProduct = this.findViewById(R.id.btnSearchProduct);
         replaceFragment(new AllFragment());
         EditText edtSearchProductValue = this.findViewById(R.id.edtSeacrchProduct);
-
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String searchValue = edtSearchProductValue.getText().toString();
-                System.out.println("UserHomeScreenActivity - create : " + searchValue);
                 replaceFragment(new AllFragment(searchValue));
             }
         });

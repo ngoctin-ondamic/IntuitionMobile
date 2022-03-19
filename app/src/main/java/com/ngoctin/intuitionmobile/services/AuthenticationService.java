@@ -9,10 +9,12 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.ngoctin.intuitionmobile.R;
+import com.ngoctin.intuitionmobile.activities.AddressActivity;
 import com.ngoctin.intuitionmobile.activities.LoginActivity;
 import com.ngoctin.intuitionmobile.activities.LoginFailedActivity;
 import com.ngoctin.intuitionmobile.activities.UserHomeScreenActivity;
 import com.ngoctin.intuitionmobile.apis.AuthenticationAPI;
+import com.ngoctin.intuitionmobile.apis.UserAPI;
 import com.ngoctin.intuitionmobile.models.Address;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
 import com.ngoctin.intuitionmobile.models.CartItem;
@@ -46,10 +48,6 @@ public class AuthenticationService {
                                                 Intent intent = new Intent(context, UserHomeScreenActivity.class);
                                                 intent.putExtra("jwt",jwt);
                                                 intent.putExtra("fullname",response.body().getFullname());
-
-                                                // After login
-                                                // Create SharedPreference to save data [userInfor, Cart, Promotions]
-
                                                 AuthenticatedUser authenticatedUser = response.body();
                                                 authenticatedUser.setJwt(jwt);
                                                 SharedPreferences sp = context.getSharedPreferences("user_store",Context.MODE_PRIVATE);
@@ -57,17 +55,34 @@ public class AuthenticationService {
                                                 Gson gson = new Gson();
                                                 String userInformation = gson.toJson(authenticatedUser);
                                                 editor.putString("authenticated_user",userInformation);
-
                                                 List<CartItem> cart = new ArrayList<>();
                                                 String cartJson = gson.toJson(cart);
                                                 editor.putString("cart",cartJson);
-
                                                 List<Promotion> promotions = new ArrayList<>();
                                                 String promotionsJson = gson.toJson(promotions);
                                                 editor.putString("promotions",promotionsJson);
-
                                                 editor.commit();
                                                 context.startActivity(intent);
+                                                UserAPI.userAPI
+                                                        .getAddressesByUserID(
+                                                                ApplicationUtils.getJwt(context),
+                                                                ApplicationUtils.getCurrentUserID(context)
+                                                        ).enqueue(new Callback<List<Address>>() {
+                                                    @Override
+                                                    public void onResponse(Call<List<Address>> call, Response<List<Address>> response) {
+                                                        SharedPreferences sp = context.getSharedPreferences("user_store",Context.MODE_PRIVATE);
+                                                        SharedPreferences.Editor editor = sp.edit();
+                                                        List<Address> addresses = new ArrayList<>();
+                                                        String addressesJson = gson.toJson(addresses);
+                                                        editor.putString("addresses",addressesJson);
+                                                        editor.commit();
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<List<Address>> call, Throwable t) {
+
+                                                    }
+                                                });
                                             }else{
                                                 Toast.makeText(context, "Account [" + username + "] does not exist !", Toast.LENGTH_SHORT).show();
                                             }

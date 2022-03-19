@@ -1,21 +1,28 @@
 package com.ngoctin.intuitionmobile.models;
 
 public class UpdateUser {
+
+    private int id;
     private String username;
     private String fullname;
     private String phoneNumber;
     private String email;
-    private String jwt;
 
-    public UpdateUser() {
-    }
 
-    public UpdateUser(String username, String fullname, String phoneNumber, String email, String jwt) {
+    public UpdateUser(int id, String username, String fullname, String phoneNumber, String email) {
+        this.id = id;
         this.username = username;
         this.fullname = fullname;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.jwt = jwt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -48,24 +55,5 @@ public class UpdateUser {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getJwt() {
-        return jwt;
-    }
-
-    public void setJwt(String jwt) {
-        this.jwt = jwt;
-    }
-
-    @Override
-    public String toString() {
-        return "UpdateUser{" +
-                "username='" + username + '\'' +
-                ", fullname='" + fullname + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", jwt='" + jwt + '\'' +
-                '}';
     }
 }

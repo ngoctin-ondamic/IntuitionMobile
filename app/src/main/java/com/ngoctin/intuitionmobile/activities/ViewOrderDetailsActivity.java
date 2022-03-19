@@ -20,7 +20,6 @@ public class ViewOrderDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_order_details);
         Long orderID = Long.parseLong(getIntent().getStringExtra("order_id"));
-        Toast.makeText(this, "orderID : " + orderID, Toast.LENGTH_SHORT).show();
         RecyclerView rvOrderDetails = this.findViewById(R.id.rvOrderDetails);
         OrderDetailsAdapter adapter = new OrderDetailsAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

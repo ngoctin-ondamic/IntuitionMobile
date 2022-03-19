@@ -94,12 +94,10 @@ public class AllFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_all, container, false);
-        System.out.println("Products : " + products);
         ProductRecyclerViewAdapter adapter = new ProductRecyclerViewAdapter(container.getContext());
         GridLayoutManager gridLayoutManager = new GridLayoutManager(container.getContext(),2);
         RecyclerView productRecyclerView = view.findViewById(R.id.rvAllProducts);
         productRecyclerView.setLayoutManager(gridLayoutManager);
-        System.out.println("SearchValue : " + searchValue);
         ProductService.getProducts(ApplicationUtils.getJwt(getContext()),productRecyclerView,adapter,0,searchValue);
         return view;
     }

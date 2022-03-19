@@ -8,6 +8,7 @@ public class Order {
     private int addressId;
     private float orderPrice;
     private String createDate;
+    private String receriverAddress;
 
 //    public Order(Long id, int userID, int promotionId, int addressId, float orderPrice) {
 //        this.id = id;
@@ -24,6 +25,32 @@ public class Order {
         this.addressId = addressId;
         this.orderPrice = orderPrice;
         this.createDate = createDate;
+    }
+
+    public Order(Long id, int userID, int promotionId, int addressId, float orderPrice, String createDate, String receriverAddress) {
+        this.id = id;
+        this.userID = userID;
+        this.promotionId = promotionId;
+        this.addressId = addressId;
+        this.orderPrice = orderPrice;
+        this.createDate = createDate;
+        this.receriverAddress = receriverAddress;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getReceriverAddress() {
+        return receriverAddress;
+    }
+
+    public void setReceriverAddress(String receriverAddress) {
+        this.receriverAddress = receriverAddress;
     }
 
     public String getCreatedDate() {

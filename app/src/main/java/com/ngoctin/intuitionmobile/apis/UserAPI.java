@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -34,13 +35,28 @@ public interface UserAPI {
     @GET("getUserInfo")
     Call<UpdateUser> getUserInfo(@Header("Authorization") String jwt);
 
-
     @PUT("update/{name}")
     Call<InforToUpdate> updateUser(@Header("Authorization") String jwt,
                                    @Path("name") String username,
                                    @Body InforToUpdate userInfo );
 
-    @GET("/getAddress/{id}")
-    Call<List<Address>> getAddress(@Header("Authorization") String jwt,
-                                   @Path("id") Long id);
+    @GET("getAddressesByUserID/{userID}")
+    Call<List<Address>> getAddressesByUserID(@Header("Authorization") String jwt,
+                                   @Path("userID") int userID);
+
+    @PUT("removeAddressByUserID/{userID}/{addressID}")
+    Call<Boolean> removeAddressByUserID(@Header("Authorization") String jwt,
+                                        @Path("userID") int userID,
+                                        @Path("addressID") int addressID);
+
+    @POST("user/addNewAddress")
+    Call<Address> addNewAddress(@Header("Authorization") String jwt,
+                                        @Body String newAddressValue);
+
+    @PUT("user/setAddressForUser/{userID}/{addressID}")
+    Call<Boolean> setAddressForUser(@Header("Authorization") String jwt,
+                                        @Path("userID") int userID,
+                                        @Path("addressID") int addressID);
+
+
 }

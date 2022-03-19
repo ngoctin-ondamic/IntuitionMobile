@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.ngoctin.intuitionmobile.R;
+import com.ngoctin.intuitionmobile.apis.UserAPI;
 import com.ngoctin.intuitionmobile.models.AuthenticatedUser;
 import com.ngoctin.intuitionmobile.models.InforToUpdate;
 import com.ngoctin.intuitionmobile.models.UpdateUser;
@@ -45,41 +46,33 @@ public class UpdateProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        AuthenticatedUser user = ApplicationUtils.getAuthenticatedUser(this);
-        String jwt = ApplicationUtils.getJwt(this);
         editUsername = (EditText) findViewById(R.id.etUsername);
         editFullname = (EditText) findViewById(R.id.etFullname);
         editPhonenumber = (EditText) findViewById(R.id.etPhoneNumber);
         editEmail = (EditText) findViewById(R.id.etEmail);
-        editUsername.setText(user.getUsername());
-        editUsername.setFocusable(false);
-        editFullname.setText(user.getFullname());
-        editPhonenumber.setText(user.getPhoneNumber());
-        editEmail.setText(user.getEmail());
-
-//
-//        Toast.makeText(UpdateProfile.this, "user : " + user.getPassword(), Toast.LENGTH_SHORT).show();
         List<EditText> editTextList = new ArrayList<>();
         editTextList.add(editFullname);
         editTextList.add(editPhonenumber);
         editTextList.add(editEmail);
 
+
+    String jwt = ApplicationUtils.getJwt(UpdateProfile.this);
+    UserService.getUserInfo(UpdateProfile.this,jwt,
+            editUsername,editFullname,editPhonenumber,editEmail);
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String fullname = editFullname.getText().toString();
                 String phonenumber = editPhonenumber.getText().toString();
                 String email = editEmail.getText().toString();
-                String username = user.getUsername();
+                String username = editUsername.getText().toString();
                 InforToUpdate infoUser = new InforToUpdate(fullname, phonenumber, email);
                 int validateInput = UserService.validate(infoUser);
                 String message = "Update Successfully!";
                 System.out.println("validateInput : " + validateInput);
                 switch (validateInput) {
                     case 0:
-                        System.out.println("onClick : " + message);
                         UserService.update(jwt, username ,message, infoUser, UpdateProfile.this);
-                        ApplicationUtils.clearAllEditTexts(editTextList);
                         break;
                     case 1:
                         message = "Full name can only contain letters ! ";

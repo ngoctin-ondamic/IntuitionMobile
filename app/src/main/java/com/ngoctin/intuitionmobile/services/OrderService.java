@@ -33,22 +33,16 @@ public class OrderService {
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                         System.out.println("createOrder : " + response.body() + " : message : " + response.message());
                         if(response.code() == 200 && response.body() == true){
-                            for (OrderDetail orderDetail: orderDetailList) {
-                                System.out.println("orderDetail.getProductID()" + orderDetail.getProductID());
-                                System.out.println("orderDetail.getOrderID()" + orderDetail.getOrderID());
-                            }
                             OrderAPI.orderApi
                                     .createOrderDetails(jwt,orderDetailList)
                                     .enqueue(new Callback<Boolean>() {
                                         @Override
                                         public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                                            System.out.println("createOrderDetails");
                                             PromotionService
                                                     .setUserPromotionByUserID(context,jwt,
                                                             order.getPromotionId(),
                                                             ApplicationUtils.getCurrentUserID(context));
                                         }
-
                                         @Override
                                         public void onFailure(Call<Boolean> call, Throwable t) {
 
@@ -71,7 +65,6 @@ public class OrderService {
                     @Override
                     public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                         if(response.code() == 200 && response != null){
-                            System.out.println("response.body().get(1).getCreatedDate() : " + response.body().get(1).getCreatedDate());
                             adapter.setOrders(response.body());
                             recyclerView.setAdapter(adapter);
                         }else{
