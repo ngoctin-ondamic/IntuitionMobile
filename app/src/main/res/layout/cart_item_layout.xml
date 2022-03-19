@@ -6,57 +6,76 @@
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="250dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/border"
+        >
 
         <ImageView
             android:id="@+id/cartItemImage"
             android:layout_width="180dp"
             android:layout_height="150dp"
+            android:layout_marginTop="45dp"
             android:padding="20dp"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            />
 
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="150dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvCartItemProductID"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
                 android:layout_weight="1"
+                android:paddingTop="20dp"
                 android:text="TextView"
-                android:visibility="gone"/>
+                android:visibility="gone" />
+
 
             <TextView
                 android:id="@+id/tvCartItemProductName"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:paddingTop="30dp"
-                android:layout_weight="1"
-                android:textAlignment="center"
+                android:layout_height="35dp"
                 android:layout_marginBottom="5dp"
-                android:text="TextView" />
+                android:layout_weight="1"
+                android:paddingTop="50dp"
+                android:text="TextView"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvCartItemPrice"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:paddingTop="30dp"
+                android:text="TextView"
+                />
+
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="70dp"
-                android:orientation="horizontal"
                 android:layout_marginTop="5dp"
-                >
-                <Button
+                android:orientation="horizontal">
+
+                <android.widget.Button
+                    android:id="@+id/btnCartItemDecrease"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnCartItemDecrease"
+                    android:background="@drawable/custom_button"
                     android:text="-"
-                    />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/tvCartItemQuantity"
@@ -65,29 +84,21 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textAlignment="center"
-                    android:text="Name" />
+                    android:text="Name"
+                    android:textAlignment="center" />
 
-                <Button
+                <android.widget.Button
+                    android:id="@+id/btnCartItemIncrease"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnCartItemIncrease"
+                    android:background="@drawable/custom_button"
                     android:text="+"
-                    />
+                    android:textSize="15dp" />
             </LinearLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvCartItemPrice"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:layout_marginBottom="5dp"
-            android:paddingTop="60dp"
-            android:text="TextView"
-            />
+
     </LinearLayout>
 
 
