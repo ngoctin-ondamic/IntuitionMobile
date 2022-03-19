@@ -119,7 +119,7 @@ public class ProductService {
                                 .centerCrop()
                                 .into(productImage);
                         productName.setText("Name : " + response.body().getName());
-                        productPrice.setText(response.body().getPrice() + "");
+                        productPrice.setText("Price: $" + response.body().getPrice() + "");
                         productQuantity.setText("Available : " + response.body().getQuantity());
                         productDesc.setText("Description : " + response.body().getDescription());
                         productUrl.setText(response.body().getUrl());
