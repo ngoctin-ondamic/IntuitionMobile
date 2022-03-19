@@ -44,7 +44,7 @@
     <ImageView
         android:id="@+id/singleProductImage"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:layout_marginTop="30dp"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -53,29 +53,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:text="TextView" />
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:paddingLeft="55dp"
+        android:text="TextView"
+        />
     <TextView
         android:id="@+id/singleProductPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_marginTop="30dp"
-        android:text="TextView" />
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:paddingLeft="55dp"
+        android:textStyle="bold"
+        android:text="TextView"
+        />
     <TextView
         android:id="@+id/singleProductAvailable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:paddingLeft="55dp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/singleProductDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:paddingLeft="55dp"
         android:text="TextView" />
 
     <TextView
